@@ -6,4 +6,8 @@ export const GlobalStyles = createGlobalStyle`
     :root{
 
     }
+    
+    body {
+        background-color: #f2f2f2;
+    };
 `;
