@@ -1,36 +1,66 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import instance from "../axios/api"
+import { cookies } from "../shared/cookies";
+// import jwt_decode from "jwt"
 
 function Login() {
 
-  const [email,setEmail] = useState('');
-  const [password,setPassword] = useState('');
+  const navi = useNavigate();
 
-  const emailHandelr = e => {
-    setEmail(e.target.value)
+  const [user,setUser] = useState({
+    email:"",
+    password:"",
+  });
+  console.log(user.email);
+  console.log(user.password);
+
+  const chgInputHandler = e => {
+    const {value,name} = e.target;
+    setUser(old => {  
+      return {...old,[name]:value}
+    });
   };
-  const passwordHandelr = e => {
-    setPassword(e.target.value)
-  };
+
+
+  const submitBtnHandler =async (e) =>  {
+    e.preventDefault();
+// 정확하지 않음 다시 확인하기
+  // try{
+  //   const result = await instance.post("/login",user);
+  //   const payload = jwt_decode(result.data.token);
+
+  //   cookies.set("token",result.data.token,{path:"/"});
+  //   cookies.set("userId",payload.id,{path:"/"});
+
+    navi("/home");
+  // } catch (error){
+  //   alert(error.message)
+  // }
+  }
 
   return (
     <Stbackground>
     <Styled>
-      <form>
+      <form onSubmit={submitBtnHandler}>
         <StTitle>로그인</StTitle>
         <StInput type="text" 
-        value={email}
-        onChange={emailHandelr}
+        value={user.email}
+        onChange={chgInputHandler}
+        name='email'
         placeholder='이메일 주소'
         maxLength='15'
+        required 
         />
         <StInput
-        value={password}
-        onChange={passwordHandelr}
+        value={user.password}
+        onChange={chgInputHandler}
+        name='password'
         placeholder='비밀번호'
         maxLength='15'
+        required 
         />
         <StButton>로그인</StButton>
       </form>
@@ -39,7 +69,7 @@ function Login() {
       <p>도움이 필요하신가요?</p>
 
       <p>Netflix 회원이 아닌가요? 
-        <Link to='./singup'>지금 가입하세요.</Link>
+        <Link to='./singup1'>지금 가입하세요.</Link>
       이 페이지는 Google reCAPTCHA의 보호를 받아 사용자가 로봇이 아님을 확인합니다. 자세히 알아보기.</p>
     </Styled>
     </Stbackground>

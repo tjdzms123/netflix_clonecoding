@@ -1,12 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { StButton, Stfont } from "./Singstyled";
+import { StButton, StFont, StSmfont } from "./Singstyled";
 
 function Signup3() {
+  const navi = useNavigate();
+
+  const onNavigate = () => {
+    navi('/movies')
+  }
   return (
-    <StDiv>
+    <StDiv>        
+      <StFont>
       <StTable>
-        <Stfont>3/3단계</Stfont>
+        <StSmfont>3/3단계</StSmfont>
+
         <p>원하는 멤버십을 선택하세요</p>
         <p>무제한으로 즐기세요.</p>
         <p>취향에 꼭 맞는 콘텐츠를 추천해 드립니다.</p>
@@ -53,8 +61,14 @@ function Signup3() {
             </tbody>
           </table>
         </tbody>
-        <StButton>로그인 완료</StButton>
       </StTable>
+      </StFont>
+      <StButton 
+      onClick={onNavigate}
+      style={{
+        marginTop:'50px'
+      }}
+      >로그인 완료</StButton>
     </StDiv>
   );
 }
@@ -76,10 +90,12 @@ const StTable = styled.table`
   border-collapse: collapse;
   width: 100%;
 
+
   td,th {
     border-bottom: 1px solid black;
     padding: 8px;
     text-align: left;
+    width: 200px;
   }
 
 `;
