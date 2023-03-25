@@ -14,7 +14,7 @@ function Nav() {
             <HeaderLink to="/">Home</HeaderLink>
           </HeaderLi1>
           <HeaderLi1>
-            <HeaderLink to="/about">About</HeaderLink>
+            <HeaderLink to="/movies">Movies</HeaderLink>
           </HeaderLi1>
           <HeaderLi1>
             <HeaderLink to="/board">Board</HeaderLink>
