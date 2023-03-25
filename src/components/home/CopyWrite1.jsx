@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 function CopyWrite1() {
+  const copyRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (copyRef.current) {
+      observer.observe(copyRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <CopyWrapper>
-      <CopyCont>
+      <CopyCont ref={copyRef}>
         <CopyImg1 />
         <CopyTextCont>
           <CopyText>
@@ -21,39 +44,50 @@ function CopyWrite1() {
   );
 }
 
-const CopyCont = styled.div`
+const CopyWrapper = styled.div`
+  position: relative;
+  width: calc(100%);
+  top: 130vh;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+`;
+
+const CopyCont = styled.div`
+  display: flex;
+  width: calc(100%);
+  flex-direction: row;
   text-align: center;
+  justify-content: center;
   font-size: 40px;
   top: -90px;
   color: white;
   padding-left: 40px;
-  gap: 50px;
+  gap: 100px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 2s ease-in-out, transform 1s ease-in-out;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const CopyImg1 = styled.div`
+  border-radius: 5px;
+  width: 400px;
+  background-image: url("/img/EHcopywrite1.jpeg");
+  background-size: cover;
+  box-shadow: rgba(255, 255, 255, 0.25) 0px 5px 15px;
 `;
 const CopyTextCont = styled.div`
   border-left: 7px solid red;
   padding-left: 40px;
 `;
-const CopyImg1 = styled.div`
-  border-radius: 5px;
-  width: 400px;
-  background-image: url("/img/EHcopywrite1.webp");
-  background-size: cover;
-  background-position-x: -30px;
-`;
 
 const CopyText = styled.div`
   margin-bottom: 20px;
-`;
-const CopyWrapper = styled.div`
-  position: absolute;
-  top: 1000px;
-  gap: 200px;
-  display: flex;
-  flex-direction: row;
-  /* justify-content: center; //absolute라 적용 안 됨 */
-  transform: translateX(5%);
 `;
 
 const RedText = styled.span`

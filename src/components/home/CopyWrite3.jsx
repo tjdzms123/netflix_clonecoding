@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-function CopyWrite2() {
+function CopyWrite3() {
   return (
     <CopyWrapper>
       <Relative>
@@ -12,8 +12,8 @@ function CopyWrite2() {
               marginTop: "150px",
             }}
           >
-            <CopyCont>추가 작업 중</CopyCont>
-            <LinkButton to="/movies">힘드렁.. →</LinkButton>
+            <CopyCont>지금 시청하기</CopyCont>
+            <LinkButton to="/movies">Netflix.com →</LinkButton>
           </div>
         </CopyImg2>
       </Relative>
@@ -23,7 +23,7 @@ function CopyWrite2() {
 
 const CopyWrapper = styled.div`
   position: relative;
-  top: 180vh;
+  top: 230vh;
   gap: 200px;
   width: calc(100%);
   display: flex;
@@ -76,4 +76,4 @@ const CopyCont = styled.div`
   margin-bottom: 20px;
 `;
 
-export default CopyWrite2;
+export default CopyWrite3;
