@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import styled from "styled-components";
+import Space from "../elem/Space";
 
 function VideoPlayer() {
   const [currentUrl, setCurrentUrl] = useState(videoUrls[0]);
@@ -12,7 +13,7 @@ function VideoPlayer() {
 
   return (
     <VideoCont>
-      <div>
+      <Space>
         <ReactPlayer
           className="react-player"
           url={currentUrl}
@@ -22,7 +23,7 @@ function VideoPlayer() {
           width="100%"
           height="100%"
         />
-      </div>
+      </Space>
       <OverlayVideo />
     </VideoCont>
   );
@@ -35,16 +36,14 @@ const videoUrls = [
 
 const OverlayVideo = styled.div`
   position: absolute;
-  bottom: 0;
   top: -90px;
   left: 0;
   width: 100%;
-  /* height: 100px; */
-  height: 0px;
   background-color: black;
 `;
 
 const VideoCont = styled.div`
+  position: relative;
   object-fit: cover;
   width: 100%;
   height: 0;
