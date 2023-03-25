@@ -18,7 +18,8 @@ export const ESInput = ({ type, placeholder, value, onChange, name }) => {
       placeholder={placeholder}
       value={value}
       onChange={onChange}
-    />
+      required
+          />
   );
 };
 
@@ -41,12 +42,13 @@ export const ESInput = ({ type, placeholder, value, onChange, name }) => {
 
 //input
 const StyledInput = styled.input`
-  width: 100%; 
+  width: 93%;
+  height: 40px;
   padding: 10px;
   margin-bottom: 15px; 
   border: none; 
   border-radius: 5px; 
-  background-color: #f3f3f3; 
+  background-color: #D8D8D8;
   font-size: 16px; 
-  font-weight: 600;
+  font-weight: 500;
 `

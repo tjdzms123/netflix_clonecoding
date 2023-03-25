@@ -41,3 +41,9 @@ git commit
 yarn add @mui/material @emotion/react @emotion/styled
 -tanstack
 리액트 쿼리
+@tanstack/react-query
+@tanstack/react-query-devtools
+-비동기 통신
+axios
+-
+json-server

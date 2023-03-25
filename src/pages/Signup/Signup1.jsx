@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { StButton, StFont, StInput, StSmfont } from "./Singstyled";
+import { StButton, StFont,  StSmfont } from "./Singstyled";
 import CheckboxLabels from "./CheckboxLabels";
 import instance from "../../axios/api";
 import {ESInput, useInput} from "../../hook/useInput"
 import { Navigate } from "react-router-dom";
+// import { useMutation } from 'react-query';
 // import useNavigate from "../../hook/useNavigate";
 
 function Signup() {
@@ -19,7 +20,7 @@ function Signup() {
     email:"",
     password:"",
     nick:"",
-  })
+  });
 
   const chgInputHandler = e => {
     const {value,name} = e.target;
@@ -30,7 +31,8 @@ function Signup() {
 
   const submitBtnHandler = e => {
     e.preventDefault();
-    instance.post("/singup",user)
+    navi('/signup2')
+    // instance.post("/singup",user)
   };
 
 //이 부분이 처리되서 먼저 입력안했는데 넘어감
@@ -38,14 +40,20 @@ function Signup() {
   //   navigateTo('/signup2')
   // }
 
-  const onNavigate = () => {
-    console.log('처리가 언제될까?');
-    navi('/signup2')
-  };
+  // const signupMutation = useMutation(
+  //   data => axios.post('/',data),
+  //   {
+      
+  //   },
+  //   {
+
+  //   }
+  // )
+
 
   return (
-    <StDiv>
-      <form onSubmit={submitBtnHandler}>
+    <StForm  onSubmit={submitBtnHandler}>
+      <div>
         <StSmfont>1/3단계</StSmfont>
         <br />
         <StFont>
@@ -68,8 +76,8 @@ function Signup() {
         onChange={chgInputHandler}
         name="password"
         placeholder="비밀번호를 추가하세요(8 이상 20 미만)"
-        maxLength='20'
-        required 
+        maxLength='20'        
+        required
         />
         <ESInput
         value={user.nick}
@@ -77,15 +85,13 @@ function Signup() {
         name="nick"
         placeholder="닉네임을 추가하세요"
         maxLength='10'
-        required 
+        required
         />
         <CheckboxLabels />
         <br />
-        <StButton 
-        onClick={onNavigate}
-        >동의하고 계속</StButton>
-      </form>
-    </StDiv>
+        <StButton>동의하고 계속</StButton>
+        </div>
+    </StForm>
   )
 };
 
@@ -93,10 +99,22 @@ export default Signup;
 
 
 //전체
-const StDiv = styled.div`
+const StForm = styled.form`
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color:#fff
+`
+
+const StInput = styled.input`
+  width: 100%; 
+  padding: 10px;
+  margin-bottom: 15px; 
+  border: none; 
+  border-radius: 5px; 
+  background-color: #f3f3f3; 
+  font-size: 16px; 
+  font-weight: 600;
 `
