@@ -29,3 +29,16 @@ git commit
 - delete: message - 파일을 삭제만 한 경우
 - merge: message - 병합 메세지
 - tempSave : 현재 작업중이지만 작업진행사항을 저장하고자 중간에 저장할 때
+
+##feautures/ES
+
+##로그인
+
+##회원가입
+
+##추가 패키지 설치
+-체크박스 
+yarn add @mui/material @emotion/react @emotion/styled
+-tanstack
+리액트 쿼리
+
