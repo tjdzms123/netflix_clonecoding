@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from '../components/header/Header'
-import Signup from '../pages/Signup'
+import Signup1 from '../pages/Signup/Signup1'
+import Signup2 from '../pages/Signup/Signup2'
+import Signup3 from '../pages/Signup/Signup3'
 import Login from '../pages/Login'
 import Home from '../pages/Home'
 import Movies from '../pages/Movies'
@@ -12,7 +14,10 @@ function Router() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup1" element={<Signup1 />} />
+        <Route path="/signup2" element={<Signup2 />} />
+        <Route path="/signup3" element={<Signup3 />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />

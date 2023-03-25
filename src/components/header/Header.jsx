@@ -1,51 +1,47 @@
-import React from "react";
-// import { useNavigate } from "react-router-dom";
-import {
-  StyledHeader,
-  GreetingContainer,
-  // GreetingNickname,
-  Greeting,
-  HeaderNav,
-  HeaderLi,
-  HeaderUl,
-  HeaderLink,
-} from "./styles";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import Nav from "./Nav";
 
 const Header = () => {
-  // const navi = useNavigate();
+  //================== Header Scroll Event =================
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.pageYOffset;
+      setScrollPosition(position);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const isHeaderOpaque = scrollPosition < 100;
+  //================== Header Scroll Event =================
 
   return (
-    <StyledHeader>
-      <HeaderNav>
-        <HeaderUl>
-          <HeaderLi>
-            <HeaderLink to="/">Home &nbsp;|</HeaderLink>
-          </HeaderLi>
-          <HeaderLi>
-            <HeaderLink to="/movies">Movies &nbsp;|</HeaderLink>
-          </HeaderLi>
-          <HeaderLi>
-            <HeaderLink to="/board">Profile &nbsp;</HeaderLink>
-          </HeaderLi>
-          {/* <HeaderLi>
-            {isLogin ? (
-              <p type="button" style={{ cursor: "pointer" }} onClick={logout}>
-                Logout
-              </p>
-            ) : (
-              <p
-                type="button"
-                style={{ cursor: "pointer" }}
-                onClick={() => navi("/login")}
-              >
-                LogIn
-              </p>
-            )}
-          </HeaderLi> */}
-        </HeaderUl>
-      </HeaderNav>
+    <StyledHeader isOpaque={isHeaderOpaque}>
+      <Nav />
     </StyledHeader>
   );
 };
+
+const StyledHeader = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  padding: 20px 0;
+  font-size: 1.3rem;
+  z-index: 50;
+  background-color: rgb(0, 0, 0);
+  opacity: ${({ isOpaque }) => (isOpaque ? 1 : 0.5)};
+  transition: opacity 0.3s ease-in-out;
+  justify-content: space-between;
+`;
 
 export default Header;
