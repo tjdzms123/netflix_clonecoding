@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -35,11 +35,19 @@ function Login() {
   //   cookies.set("token",result.data.token,{path:"/"});
   //   cookies.set("userId",payload.id,{path:"/"});
 
-    navi("/home");
+    navi("/movies");
   // } catch (error){
   //   alert(error.message)
   // }
-  }
+  };
+
+  //가드
+  useEffect(()=> {
+    const token = cookies.get("token");
+    if (token) {
+      navi("/movies");
+    }
+  },[]);
 
   return (
     <Stbackground>
