@@ -83,6 +83,7 @@ const StDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color:#fff
 `
 
 //표
@@ -92,7 +93,7 @@ const StTable = styled.table`
 
 
   td,th {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid gray;
     padding: 8px;
     text-align: left;
     width: 200px;

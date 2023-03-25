@@ -17,11 +17,12 @@ function Nav() {
             <HeaderLink to="/movies">Movies</HeaderLink>
           </HeaderLi1>
           <HeaderLi1>
-            <HeaderLink to="/board">Board</HeaderLink>
+            <HeaderLink to="/">000</HeaderLink>
           </HeaderLi1>
         </HeaderUl>
       </Row>
       <Row style={{ paddingRight: "27.441px", color: "white" }}>
+        {/* 이하 태그 추후에 수정하겠습니다~ */}
         <HeaderUl>
           <HeaderLi2>
             <HiOutlineSearch />
@@ -29,8 +30,12 @@ function Nav() {
           <HeaderLi2>
             <BiBell />
           </HeaderLi2>
+          <HeaderLi1 style={{ width: "60px" }}>
+            <HeaderLink to="/login">login</HeaderLink>
+            {/* login button 디자인 추후 수정하겠습니다. */}
+          </HeaderLi1>
         </HeaderUl>
-        <Profile src="img/EHprofile1.png" />
+        {/* <Profile src="img/EHprofile1.png" /> */}
       </Row>
     </StyledNav>
   );

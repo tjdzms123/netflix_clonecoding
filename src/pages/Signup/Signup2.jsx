@@ -34,4 +34,5 @@ const StDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #fff;
 `
