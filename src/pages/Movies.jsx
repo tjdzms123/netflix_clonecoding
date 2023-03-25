@@ -1,9 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+// =============== EH =================
+import { Helmet } from "react-helmet";
+// =============== EH =================
 
 function Movies() {
   return (
     <>
+      //========= EH =============
+      <Helmet>
+        <title>Netflix</title>
+      </Helmet>
+      //========= EH =============
       <StHeader />
       <StMovieContainer>
         <StMovieWrap>

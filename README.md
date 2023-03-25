@@ -48,4 +48,5 @@ yarn add axios
 
 ## EH
 
-yarn add react-intersection-observer
+yarn add react-intersection-observer (취소)
+yarn add react-helmet (페이지마다 meta title 지정용)
