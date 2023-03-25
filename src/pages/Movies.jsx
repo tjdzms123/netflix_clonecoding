@@ -4,35 +4,43 @@ import styled from "styled-components";
 function Movies() {
   return (
     <>
-      <StTop />
-      <StMovieList>
-        <h2>영화 장르 이름</h2>
-        <StMovieCardWrap>
-          <StMovieCard>장르별 영화</StMovieCard>
-          <StMovieCard>장르별 영화</StMovieCard>
-        </StMovieCardWrap>
-      </StMovieList>
+      <StHeader />
+      <StMovieContainer>
+        <StMovieWrap>
+          <StMoviecategory>영화 장르 이름</StMoviecategory>
+          <StMovieCards>
+            <StMovieCard>장르별 영화</StMovieCard>
+            <StMovieCard>장르별 영화</StMovieCard>
+          </StMovieCards>
+        </StMovieWrap>
+      </StMovieContainer>
     </>
   );
 }
 
 export default Movies;
 
-const StTop = styled.div`
-  width: 100%;
+const StHeader = styled.div`
   height: 500px;
   background-image: url(https://i.ibb.co/vXqDmnh/background.jpg);
   background-size: cover;
   background-position: center;
 `;
 
-const StMovieList = styled.div`
-  background-color: black;
+const StMovieContainer = styled.div`
   color: white;
-  padding: 30px;
+  padding: 10px 30px 30px 30px;
 `;
 
-const StMovieCardWrap = styled.div`
+const StMovieWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StMoviecategory = styled.p`
+  margin-bottom: 15px;
+`;
+const StMovieCards = styled.div`
   display: flex;
   flex-direction: row;
   gap: 30px;
