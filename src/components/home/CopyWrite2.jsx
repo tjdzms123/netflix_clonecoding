@@ -28,6 +28,7 @@ const CopyWrapper = styled.div`
   width: calc(100%);
   display: flex;
   flex-direction: row;
+  /* justify-content: center; */
 `;
 
 const Relative = styled.div`
@@ -51,9 +52,6 @@ const CopyImg2 = styled.div`
   color: white;
   gap: 50px;
   width: calc(100%);
-  /* width: 1920px; */
-  //width 100%가 왜 안 뒈는 거야......
-  /* width: 100%; */
   height: 500px;
 `;
 
