@@ -4,9 +4,7 @@ import styled from "styled-components";
 
 import { StButton, StFont, StSmfont } from "./Singstyled";
 import CheckboxLabels from "../../components/CheckboxLabels";
-import { instance } from "../../axios/api";
 import { ESInput, useInput } from "../../hook/useInput";
-// import { useMutation } from 'react-query';
 // import useNavigate from "../../hook/useNavigate";
 // =============== EH =================
 import { Helmet } from "react-helmet";

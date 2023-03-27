@@ -4,10 +4,11 @@ import styled from 'styled-components';
 import { ESInput, useInput } from '../hook/useInput';
 import { __getprofile } from '../redux/modules/ProfileSlice';
 import { StSmfont } from './Signup/Singstyled';
+import {ModalBackground, ModalOpenTrigger} from "../components/elem/Modal"
 
 function Profile() {
 
-  // const {profile, isLoading, isError} = useSelector(state => state.profile);
+  // const {profile, isLoading, isError} = useSelector((state) => state.profile);
 
   // const dispatch = useDispatch();
 
@@ -22,6 +23,8 @@ function Profile() {
   // ,[])
   
   return ( 
+    <>
+    </>
     // <div>
     //   <p>Netfilx를 시청할 프로필을 선택하세요.</p>
     //     <div>
@@ -33,40 +36,44 @@ function Profile() {
     //       ))
     //     }
     //   </div>
-    //   </div>  
+    //   </div>
+          //   <ModalOpenTrigger>
+          //   <ModalBackground />
+          // </ModalOpenTrigger>
 
-  <StDiv>
-    <StHeader>
-        <StButton>프로필 추가</StButton>
-        <StImage src=''></StImage>
-        <ESInput type="text" 
-        name='newProfile'
-        placeholder='프로필의 닉네임을 입력해주세요.'
-        value={newProfile}
-        onChange={newProfileHandler}
-        required
-        />
-    </StHeader>
 
-    <div>
-        <p>관람등급 설정 :</p>
-        <select name="size" id="">
-            <option value="성인">성인</option>
-            <option value="청소년">19세 미만 청소년</option>
-        </select>
-        <StSmfont>이 프로필에서는 모든 관람등급의 콘텐츠가 표시됩니다.</StSmfont>
-        {/* 성인이냐 청소년이냐 -> 성인이면 모든 관람msg 아니면 청소년 관람자 */}
-        <button>수정</button>
-    </div>
+  // <StDiv>
+  //   <StHeader>
+  //       <StButton>프로필 추가</StButton>
+  //       <StImage src=''></StImage>
+  //       <ESInput type="text" 
+  //       name='newProfile'
+  //       placeholder='프로필의 닉네임을 입력해주세요.'
+  //       value={newProfile}
+  //       onChange={newProfileHandler}
+  //       required
+  //       />
+  //   </StHeader>
 
-    <div>
-        <StMenu>
-            <button>저장</button>
-            <button>취소</button>
-            <button>프로필 삭제</button>
-        </StMenu>
-    </div>
-  </StDiv>
+  //   <div>
+  //       <p>관람등급 설정 :</p>
+  //       <select name="size" id="">
+  //           <option value="성인">성인</option>
+  //           <option value="청소년">19세 미만 청소년</option>
+  //       </select>
+  //       <StSmfont>이 프로필에서는 모든 관람등급의 콘텐츠가 표시됩니다.</StSmfont>
+  //       {/* 성인이냐 청소년이냐 -> 성인이면 모든 관람msg 아니면 청소년 관람자 */}
+  //       <button>수정</button>
+  //   </div>
+
+  //   <div>
+  //       <StMenu>
+  //           <button>저장</button>
+  //           <button>취소</button>
+  //           <button>프로필 삭제</button>
+  //       </StMenu>
+  //   </div>
+  // </StDiv>
   )
 }
 

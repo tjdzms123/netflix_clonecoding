@@ -7,11 +7,9 @@ import ImageSlider from "../components/elem/Slide";
 function Movies() {
   return (
     <>
-      //========= EH =============
       <Helmet>
         <title>Netflix</title>
       </Helmet>
-      //========= EH =============
       <StHeader />
       <ImageSlider />
     </>

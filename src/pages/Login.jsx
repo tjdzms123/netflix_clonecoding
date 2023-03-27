@@ -4,7 +4,6 @@ import styled from "styled-components";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
-import instance from "../axios/api";
 import { ESInput } from "../hook/useInput";
 import { cookies } from "../shared/cookies";
 // import jwt_decode from "jwt"

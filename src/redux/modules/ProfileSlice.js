@@ -7,7 +7,7 @@ const initialState = {
     profile: [],
     isLoading: false,
     isError: false,
-    error: null,
+    // isSuccess: true,
   };
 
   export const __getprofile = createAsyncThunk(
@@ -42,4 +42,5 @@ const initialState = {
     },
     }
   })
+
   export default profileSlice.reducer
