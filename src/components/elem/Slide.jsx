@@ -1,15 +1,11 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
 import styled from "styled-components";
+import { instance } from "../../axios/api";
 import Detail from "../../pages/Detail";
 import { modalOnOff } from "../../redux/modules/modalSlice";
-import {
-  Flexdiv,
-  ModalBackground,
-  ModalContent,
-  ModalOpenTrigger,
-} from "./Modal";
+import { ModalBackground, ModalContent, ModalOpenTrigger } from "./Modal";
 
 const images = [
   "https://upload.wikimedia.org/wikipedia/ko/thumb/b/b8/1917%EC%98%81%ED%99%94_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg/220px-1917%EC%98%81%ED%99%94_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg",
@@ -25,12 +21,19 @@ const images = [
 ];
 
 const ImageSlider = () => {
-
   const dispatch = useDispatch();
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const modalState = useSelector((state) => state.modalSlice.modal);
+
+  // const response = useQuery({
+  //   queryKey: ["GET_ALLMOVIES"],
+  //   queryFn: async () => {
+  //     const data = await instance.get(`/movies`);
+  //     console.log(data);
+  //   },
+  // });
 
   const handlePrevClick = () => {
     setCurrentSlide((currentSlide) =>
