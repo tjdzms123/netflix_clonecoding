@@ -4,8 +4,8 @@ import axios from 'axios';
 
 const initialState = {
     signup: {
-        email:'',
-        password:'',
+        email: '',
+        password: '',
         isLogin: false,
         isLoading: false,
         isError: null,
@@ -15,15 +15,15 @@ const initialState = {
 //로그인 -> post
 export const __signUp = createAsyncThunk(
     "SIGN_UP",
-    async (payload,thunkAPI) => {
+    async (payload, thunkAPI) => {
         try {
-            await axios.post('http://52.78.166.176:3000/user/signup',payload)
-            // await instance.post(`${process.env.REACT_APP_NETFLIX_KEY}/user/singup`, payload) 
+            await instance.post("/user/signup", payload)
+            alert(`회원가입에 성공했습니다.`)
             return thunkAPI.fulfillWithValue(payload)
         }
         catch (error) {
-            // const errorMsg = error.response.data.msg
-            // alert(`${errorMsg}`)
+            const errorMsg = error.response.data.errorMessage;
+            alert(`${errorMsg}`)
             return thunkAPI.rejectWithValue(error)
         }
     }
@@ -31,13 +31,13 @@ export const __signUp = createAsyncThunk(
 
 export const __login = createAsyncThunk(
     "LOGIN",
-    async (payload,thunkAPI) => {
+    async (payload, thunkAPI) => {
         try {
             const data = await instance.post(`${process.env.REACT_APP_NETFLIX_KEY}/login`, payload)
             console.log(data);
             return thunkAPI.fulfillWithValue(data)
         }
-        catch(error) {
+        catch (error) {
             return thunkAPI.rejectWithValue(error)
         }
     }
@@ -45,12 +45,12 @@ export const __login = createAsyncThunk(
 
 
 const signupSlice = createSlice({
-    name:"signup",
+    name: "signup",
     initialState,
     extraReducers: {
 
     }
 });
 
-export const {} = signupSlice.actions;
+export const { } = signupSlice.actions;
 export default signupSlice.reducer;

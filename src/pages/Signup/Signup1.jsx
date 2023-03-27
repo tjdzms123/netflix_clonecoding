@@ -10,6 +10,8 @@ import { ESInput, useInput } from "../../hook/useInput";
 // import useNavigate from "../../hook/useNavigate";
 // =============== EH =================
 import { Helmet } from "react-helmet";
+import { __signUp } from "../../redux/modules/loginSlice";
+import { useDispatch } from "react-redux";
 // =============== EH =================
 
 function Signup() {
@@ -17,6 +19,7 @@ function Signup() {
   // const isLogin = useSelector(state => state.login);
 
   const navi = useNavigate();
+  const dispatch = useDispatch();
 
   const [user, setUser] = useState({
     email: "",
@@ -30,26 +33,15 @@ function Signup() {
     });
   };
 
-  const submitBtnHandler = (e) => {
+  const submitBtnHandler = async (e) => {
     e.preventDefault();
-    navi("/signup2");
-    instance.post("/singup", user);
+    const response = await dispatch(__signUp(user));
+    if (response.type === "SIGN_UP/rejected") {
+      navi("/signup1");
+    } else {
+      navi("/signup2");
+    }
   };
-
-  //이 부분이 처리되서 먼저 입력안했는데 넘어감
-  // const onNavigate = () => {
-  //   navigateTo('/signup2')
-  // }
-
-  // const signupMutation = useMutation(
-  //   data => axios.post('/',data),
-  //   {
-
-  //   },
-  //   {
-
-  //   }
-  // )
 
   return (
     <>

@@ -10,7 +10,7 @@ function Signup3() {
   const navi = useNavigate();
 
   const onNavigate = () => {
-    navi("/movies");
+    navi("/login");
   };
   return (
     <>
@@ -78,7 +78,7 @@ function Signup3() {
             marginTop: "50px",
           }}
         >
-          로그인 완료
+          로그인하러 가기
         </StButton>
       </StDiv>
     </>
