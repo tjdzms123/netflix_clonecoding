@@ -6,7 +6,6 @@ import { StButton, StFont, StSmfont } from "./Singstyled";
 import CheckboxLabels from "../../components/CheckboxLabels";
 import { instance } from "../../axios/api";
 import { ESInput, useInput } from "../../hook/useInput";
-import { Navigate } from "react-router-dom";
 // import { useMutation } from 'react-query';
 // import useNavigate from "../../hook/useNavigate";
 // =============== EH =================

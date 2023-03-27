@@ -53,7 +53,8 @@ const submitBtnHandler = async (e) => {
       <form onSubmit={submitBtnHandler}
       >
         <StTitle>로그인</StTitle>
-        <ESInput type="text" 
+        <ESInput 
+        type="email"
         value={user.email}
         onChange={chgInputHandler}
         name='email'
@@ -62,6 +63,7 @@ const submitBtnHandler = async (e) => {
         required 
         />
         <ESInput
+        type='password'
         value={user.password}
         onChange={chgInputHandler}
         name='password'
@@ -80,7 +82,8 @@ const submitBtnHandler = async (e) => {
         <StLink to='/signup1'>지금 가입하세요.</StLink> </p> 
         <p style={{
           fontSize:"12px",
-        }}>이 페이지는 Google reCAPTCHA의 보호를 받아 사용자가 로봇이 아님을 확인합니다. 
+        }}>
+          이 페이지는 Google reCAPTCHA의 보호를 받아 사용자가 로봇이 아님을 확인합니다. 
           <StLink>자세히 알아보기.</StLink> </p>
     </Styled>
     </Stbackground>

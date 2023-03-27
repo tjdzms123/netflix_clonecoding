@@ -10,11 +10,9 @@ import { Helmet } from "react-helmet";
 function Home() {
   return (
     <>
-      //========= EH =============
       <Helmet>
         <title>Home - Netflix</title>
       </Helmet>
-      //========= EH =============
       {/* <VideoDesc /> */}
       <VideoPlayer />
       {/* testing */}
