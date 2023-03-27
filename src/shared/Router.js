@@ -8,6 +8,7 @@ import Home from '../pages/Home'
 import Movies from '../pages/Movies'
 import Categories from '../pages/Categories'
 import Detail from '../pages/Detail'
+import Profile from '../pages/Profile'
 
 function Router() {
   return (
@@ -19,6 +20,8 @@ function Router() {
         <Route path="/signup3" element={<Signup3 />} />
 
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
+
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:categoryId" element={<Categories />} />

@@ -8,7 +8,7 @@ export const useInput = (payload) => {
     setValue(e.target.value)
   }
   return [value, onChangeHandler, setValue]
-}
+};
 
 export const ESInput = ({ type, placeholder, value, onChange, name }) => {
   return (
