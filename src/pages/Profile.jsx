@@ -1,47 +1,94 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { ESInput, useInput } from '../hook/useInput';
 import { __getprofile } from '../redux/modules/ProfileSlice';
 import { StSmfont } from './Signup/Singstyled';
-import {ModalBackground, ModalOpenTrigger} from "../components/elem/Modal"
+import Button from '../components/elem/Button';
+import { modalOnOff } from '../redux/modules/modalSlice';
+import { ModalBackground,
+  ModalContent,
+  ModalOpenTrigger} from '../components/elem/Modal'
+import Detail from './Detail';
 
 function Profile() {
 
-  // const {profile, isLoading, isError} = useSelector((state) => state.profile);
+  const {profile, isLoading, isError} = useSelector((state) => state.profile);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [newProfile, newProfileHandler, setNewProfile] = useInput('');
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const modalState = useSelector((state) => state.modalSlice.modal);
+
+  const images = [
+    "img/netflix-profile1.png",
+    "img/netflix-profile2.png",
+    "img/netflix-profile3.png"  ]
+
+  const handlePrevClick = () => {
+    setCurrentSlide((currentSlide) =>
+      currentSlide === 0 ? images.length - 1 : currentSlide - 1
+    );
+  };
+
+  const handleNextClick = () => {
+    setCurrentSlide((currentSlide) => (currentSlide + 1) % images.length);
+  };
+
+  const onClickDetail = () => {
+    dispatch(modalOnOff(modalState));
+  };
+
 
   // if(isLoading || isError) {
   //   return <div> ... 로딩 중입니다.</div>
   // }
 
+  // const onClickDetail = () => {
+  //   dispatch(modalOnOff(modalState));
+  // };
+
+  // const images = [
+  //   "netflix-profiles1"
+  // ]
+
   // useEffect(()=>
   // dispatch(__getprofile())
   // ,[])
-  
+
   return ( 
-    <>
-    </>
-    // <div>
-    //   <p>Netfilx를 시청할 프로필을 선택하세요.</p>
-    //     <div>
-    //     {
-    //       profile.map((item) => (
-    //         <div key={item.id}>
-    //           {item.nickname}
-    //           </div>
-    //       ))
-    //     }
-    //   </div>
-    //   </div>
-          //   <ModalOpenTrigger>
-          //   <ModalBackground />
-          // </ModalOpenTrigger>
+    <StDiv>
+      <p>Netfilx를 시청할 프로필을 선택하세요.</p>
+        <div>
+        {/* <Modal>프로필1</Modal> */}
+        {
+          profile.map((item) => (
+            <div key={item.id}>
+              {/* {item.nickname} */}
+              </div>
+          ))
+        }
+      </div>
+    <ModalOpenTrigger>
+    <ModalBackground />
+  </ModalOpenTrigger>
+  <StContainer>
+    <StSlideContainer>
+      {
+      images.map((image, index) => (
+        <StSlide key={index} src={image} onClick={onClickDetail} />
+      ))
+      }
+    </StSlideContainer>
+  </StContainer>
+  <ModalContent>
+    <Detail />
+  </ModalContent>
+  </StDiv>
 
-
+// 모달 안에 사용할 부분
   // <StDiv>
   //   <StHeader>
   //       <StButton>프로필 추가</StButton>
@@ -133,3 +180,37 @@ const StButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   `
+
+  //////////////////////////////////////////////////////////
+  
+
+const StContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  /* width: 80%; */
+  padding: 0px 40px 0px 40px;
+`
+
+const StSlideContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transform: translateX(${(props) => props.translateX}%);
+  transition: transform 0.4s ease-in-out;
+  gap: 15px;
+  justify-content: space-between;
+`
+
+const StSlide = styled.img`
+  width: 40%;
+  max-width: 200px;
+  margin-bottom: 20px;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
+  cursor: pointer;
+`;

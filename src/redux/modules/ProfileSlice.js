@@ -7,7 +7,7 @@ const initialState = {
     profile: [],
     isLoading: false,
     isError: false,
-    // isSuccess: true,
+    isSuccess: false,
   };
 
   export const __getprofile = createAsyncThunk(
