@@ -24,7 +24,7 @@ function Footer() {
 
 const CopyWrapper = styled.div`
   position: relative;
-  top: 260vh;
+  top: 0vh;
   gap: 200px;
   display: flex;
 `;

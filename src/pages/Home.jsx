@@ -5,6 +5,7 @@ import CopyWrite3 from "../components/home/CopyWrite3";
 import Footer from "../components/home/Footer";
 import VideoPlayer from "../components/home/VideoPlayer";
 import { Helmet } from "react-helmet";
+// import VideoDesc from ".  ./components/home/VideoDesc";
 
 function Home() {
   return (
@@ -14,7 +15,9 @@ function Home() {
         <title>Home - Netflix</title>
       </Helmet>
       //========= EH =============
+      {/* <VideoDesc /> */}
       <VideoPlayer />
+      {/* testing */}
       <CopyWrite1 />
       <CopyWrite2 />
       <CopyWrite3 />

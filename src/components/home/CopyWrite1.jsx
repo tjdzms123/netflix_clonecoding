@@ -47,7 +47,7 @@ function CopyWrite1() {
 const CopyWrapper = styled.div`
   position: relative;
   width: calc(100%);
-  top: 130vh;
+  top: -70vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -66,7 +66,7 @@ const CopyCont = styled.div`
   gap: 100px;
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 2s ease-in-out, transform 1s ease-in-out;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
 
   &.visible {
     opacity: 1;

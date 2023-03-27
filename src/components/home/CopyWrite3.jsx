@@ -23,7 +23,7 @@ function CopyWrite3() {
 
 const CopyWrapper = styled.div`
   position: relative;
-  top: 230vh;
+  top: 0vh;
   gap: 200px;
   width: calc(100%);
   display: flex;
