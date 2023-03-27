@@ -1,60 +1,119 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 function CopyWrite2() {
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+
+  const handleClickNext = () => {
+    setCurrentCardIndex(currentCardIndex + 1);
+  };
+
+  const handleClickPrev = () => {
+    setCurrentCardIndex(currentCardIndex - 1);
+  };
+
+  // * ============= Cards Img Unvisible Issue ============== *
+
+  const cards = [
+    { id: 1, backgroundColor: "#ff7f502b", imageUrl: "/img/CopyImg1.jpeg" },
+    { id: 2, backgroundColor: "#4169e1" },
+    { id: 3, backgroundColor: "#f08080" },
+    { id: 4, backgroundColor: "#87cefa" },
+    { id: 5, backgroundColor: "#da70d6" },
+    { id: 6, backgroundColor: "#1d252a" },
+    { id: 7, backgroundColor: "#545667" },
+  ];
+  // * ============= for Test ============== *
+  // [
+  //   {
+  //     id: 1,
+  //     backgroundImage: "url('/img/CopyImg1.jpeg')",
+  //     backgroundSize: "cover",
+  //   },
+  //   {
+  //     id: 2,
+  //     backgroundImage: "url('/img/EHhome1.jpg')",
+  //     backgroundSize: "cover",
+  //   },
+  //   {
+  //     id: 3,
+  //     backgroundImage: "url('/img/EHprofile1.png')",
+  //     backgroundSize: "cover",
+  //   },
+  // ];
+  // * ============= for Test ============== *
+  // * ============= Cards Img Unvisible Issue ============== *
   return (
     <CopyWrapper>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          textAlign: "center",
-          fontSize: "40px",
-          top: "-90px",
-          color: "white",
-          paddingLeft: "40px",
-          gap: "50px",
-        }}
-      >
-        <CopyImg1 />
-        <div style={{ borderLeft: "7px solid red", paddingLeft: "40px" }}>
-          <CopyCont>
-            <RedText>이야기</RedText>는 사람을 움직입니다.
-          </CopyCont>
-          <CopyCont>
-            <RedText>이야기</RedText>를 통해 우리는 더 많은 감정을 느끼고,
-          </CopyCont>
-          <CopyCont>새로운 관점을 접하고,</CopyCont>
-          <CopyCont>서로에 대한 이해를 높일 수 있습니다.</CopyCont>
-        </div>
-      </div>
+      <Container>
+        <Button onClick={handleClickPrev} disabled={currentCardIndex === 0}>
+          〈
+        </Button>
+        <CardWrapper>
+          {cards.map((card, index) => (
+            <Card
+              key={card.id}
+              backgroundColor={card.backgroundColor}
+              isActive={index === currentCardIndex}
+            />
+          ))}
+        </CardWrapper>
+        <Button
+          onClick={handleClickNext}
+          disabled={currentCardIndex === cards.length - 1}
+        >
+          〉
+        </Button>
+      </Container>
     </CopyWrapper>
   );
 }
 
-const CopyImg1 = styled.div`
-  border-radius: 5px;
-  width: 400px;
-  background-image: url("/img/EHcopywrite1.webp");
-  background-size: cover;
-  background-position-x: -30px;
-`;
-
-const CopyCont = styled.div`
-  margin-bottom: 20px;
-`;
 const CopyWrapper = styled.div`
-  position: absolute;
-  /* top: 1550px; */
-  top: 1550px;
+  position: relative;
+  top: -35vh;
   gap: 200px;
+  width: calc(100%);
   display: flex;
   flex-direction: row;
-  /* justify-content: center; //absolute라 적용 안 됨 */
-  transform: translateX(5%);
+  justify-content: center;
 `;
 
-const RedText = styled.span`
-  color: red;
+const Card = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  background-color: ${(props) => props.backgroundColor};
+  transition: left 0.3s ease-in-out;
+  left: ${(props) => (props.isActive ? "0" : "-100%")};
+  z-index: ${(props) => (props.isActive ? 1 : 0)};
 `;
+
+const CardWrapper = styled.div`
+  position: relative;
+  width: 100vh;
+  height: 60vh;
+  overflow: hidden;
+`;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 2vh;
+`;
+
+const Button = styled.button`
+  font-size: 30px;
+  padding: 10px 20px;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+`;
+
 export default CopyWrite2;

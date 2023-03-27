@@ -6,26 +6,36 @@ function Footer() {
     <>
       <CopyWrapper>
         <SpaceCont>
-          <div style={{ border: "3px solid white", color: "white" }}>try</div>
-          <div style={{ border: "3px solid white", color: "white" }}>try</div>
+          <div
+            style={{ width: "10%", border: "3px solid white", color: "white" }}
+          >
+            footer1
+          </div>
+          <div
+            style={{ width: "10%", border: "3px solid white", color: "white" }}
+          >
+            footer2
+          </div>
         </SpaceCont>
       </CopyWrapper>
     </>
   );
 }
 
-const SpaceCont = styled.div`
-  padding-left: 240px; /* absolute라 justify-content 이걸로 */
-  margin-top: 200px; /* 여백 조정 */
-  display: flex;
-  flex-direction: column;
-`;
 const CopyWrapper = styled.div`
-  position: absolute;
-  top: 2000px;
+  position: relative;
+  top: 0vh;
   gap: 200px;
   display: flex;
+`;
+
+const SpaceCont = styled.div`
+  margin-top: 200px; /* 여백 조정 */
+  display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;
 
 export default Footer;

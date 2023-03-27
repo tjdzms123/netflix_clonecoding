@@ -34,8 +34,8 @@ const StyledHeader = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 20px;
-  padding: 20px 0;
+  height: 30px;
+  padding: 25px 0;
   font-size: 1.3rem;
   z-index: 50;
   background-color: rgb(0, 0, 0);
