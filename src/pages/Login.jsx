@@ -4,21 +4,18 @@ import styled from "styled-components";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-import instance from "../axios/api"
+import { instance } from "../axios/api";
 import { ESInput } from "../hook/useInput";
 import { cookies } from "../shared/cookies";
-// import jwt_decode from "jwt"
+
 
 function Login() {
 
   const navi = useNavigate();
-
   const [user,setUser] = useState({
     email:"",
     password:"",
   });
-  console.log(user.email);
-  console.log(user.password);
 
   const chgInputHandler = e => {
     const {value,name} = e.target;
@@ -27,35 +24,30 @@ function Login() {
     });
   };
 
+const submitBtnHandler = async (e) => {
+  e.preventDefault();
+  // const response = await dispatch(__login(user));
+  // if (response.type === "logIn/fulfilled") {
+  //   dispatch(isLoginActions.login());
+  //   alert("로그인 되었습니다.");
+    navi("/");
+  }
 
-  const submitBtnHandler =async (e) =>  {
-    e.preventDefault();
-// 정확하지 않음 다시 확인하기
-  // try{
-  //   const result = await instance.post("/login",user);
-  //   const payload = jwt_decode(result.data.token);
-
-  //   cookies.set("token",result.data.token,{path:"/"});
-  //   cookies.set("userId",payload.id,{path:"/"});
-
-    navi("/movies");
-  // } catch (error){
-  //   alert(error.message)
-  // }
-  };
 
   //가드
-  useEffect(()=> {
+  useEffect(() => {
     const token = cookies.get("token");
     if (token) {
       navi("/movies");
+      alert("먼저 로그아웃을 해 주세요.");
     }
-  },[]);
+  });
 
   return (
     <Stbackground>
     <Styled>
-      <form onSubmit={submitBtnHandler}>
+      <form onSubmit={submitBtnHandler}
+      >
         <StTitle>로그인</StTitle>
         <ESInput type="text" 
         value={user.email}
@@ -74,22 +66,24 @@ function Login() {
         required 
         />
         <StButton>로그인</StButton>
+        {/* <StButton>로그아웃</StButton> */}
+
         <FormControlLabel control={<Checkbox defaultChecked />} label="로그인 정보 저장" /> &nbsp;
         <StLink>도움이 필요하신가요?</StLink>
       </form>
-
-      <p>Netflix 회원이 아닌가요? &nbsp; &nbsp;
+ 
+      <p>Netflix 회원이 아닌가요? &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         <StLink to='/signup1'>지금 가입하세요.</StLink> </p> 
         <p style={{
           fontSize:"12px",
         }}>이 페이지는 Google reCAPTCHA의 보호를 받아 사용자가 로봇이 아님을 확인합니다. 
           <StLink>자세히 알아보기.</StLink> </p>
-
     </Styled>
     </Stbackground>
 
     )
 }
+
 
 export default Login;
 
@@ -123,8 +117,7 @@ const Stbackground = styled.div`
 
 //제목
   const StTitle = styled.p`
-  text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   font-size: 28px;
   color:#fff
 `

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { StButton, StFont,  StSmfont } from "./Singstyled";
-import CheckboxLabels from "./CheckboxLabels";
-import instance from "../../axios/api";
-import {ESInput, useInput} from "../../hook/useInput"
+import CheckboxLabels from "../../components/CheckboxLabels";
+import {instance} from "../../axios/api";
+import {ESInput} from "../../hook/useInput"
 import { Navigate } from "react-router-dom";
 // import { useMutation } from 'react-query';
 // import useNavigate from "../../hook/useNavigate";
@@ -19,7 +19,6 @@ function Signup() {
   const [user,setUser] = useState({
     email:"",
     password:"",
-    nick:"",
   });
 
   const chgInputHandler = e => {
@@ -32,7 +31,7 @@ function Signup() {
   const submitBtnHandler = e => {
     e.preventDefault();
     navi('/signup2')
-    // instance.post("/singup",user)
+    instance.post("/singup",user)
   };
 
 //이 부분이 처리되서 먼저 입력안했는데 넘어감
@@ -63,6 +62,7 @@ function Signup() {
         </StFont>
         <br />
         <ESInput
+        type='email'
         value={user.email}
         name="email"
         onChange={chgInputHandler}
@@ -72,6 +72,7 @@ function Signup() {
         />
         <br />
         <ESInput
+        type='password'
         value={user.password}
         onChange={chgInputHandler}
         name="password"
@@ -79,14 +80,14 @@ function Signup() {
         maxLength='20'        
         required
         />
-        <ESInput
+        {/* <ESInput
         value={user.nick}
         onChange={chgInputHandler}
         name="nick"
         placeholder="닉네임을 추가하세요"
         maxLength='10'
         required
-        />
+        /> */}
         <CheckboxLabels />
         <br />
         <StButton>동의하고 계속</StButton>
@@ -106,15 +107,4 @@ const StForm = styled.form`
   justify-content: center;
   align-items: center;
   color:#fff
-`
-
-const StInput = styled.input`
-  width: 100%; 
-  padding: 10px;
-  margin-bottom: 15px; 
-  border: none; 
-  border-radius: 5px; 
-  background-color: #f3f3f3; 
-  font-size: 16px; 
-  font-weight: 600;
 `
