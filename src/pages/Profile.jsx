@@ -1,26 +1,49 @@
-import React, {useState} from 'react'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { ESInput } from '../hook/useInput';
+import { ESInput, useInput } from '../hook/useInput';
+import { __getprofile } from '../redux/modules/ProfileSlice';
 import { StSmfont } from './Signup/Singstyled';
 
 function Profile() {
 
-    const [profile,setProfile] = useState('');
+  // const {profile, isLoading, isError} = useSelector(state => state.profile);
 
-    const profileBtnHandler = e => {
-        setProfile(e.target.value);
-    }
+  // const dispatch = useDispatch();
 
-  return (    
+  const [newProfile, newProfileHandler, setNewProfile] = useInput('');
+
+  // if(isLoading || isError) {
+  //   return <div> ... 로딩 중입니다.</div>
+  // }
+
+  // useEffect(()=>
+  // dispatch(__getprofile())
+  // ,[])
+  
+  return ( 
+    // <div>
+    //   <p>Netfilx를 시청할 프로필을 선택하세요.</p>
+    //     <div>
+    //     {
+    //       profile.map((item) => (
+    //         <div key={item.id}>
+    //           {item.nickname}
+    //           </div>
+    //       ))
+    //     }
+    //   </div>
+    //   </div>  
+
   <StDiv>
     <StHeader>
         <StButton>프로필 추가</StButton>
         <StImage src=''></StImage>
         <ESInput type="text" 
-        name='profile'
+        name='newProfile'
         placeholder='프로필의 닉네임을 입력해주세요.'
-        value={profile}
-        onChange={profileBtnHandler}
+        value={newProfile}
+        onChange={newProfileHandler}
         required
         />
     </StHeader>
