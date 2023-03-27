@@ -17,7 +17,7 @@ function Nav() {
             <HeaderLink to="/movies">Movies</HeaderLink>
           </HeaderLi1>
           <HeaderLi1>
-            <HeaderLink to="/">000</HeaderLink>
+            <HeaderLink to="/test">Test</HeaderLink>
           </HeaderLi1>
         </HeaderUl>
       </Row>

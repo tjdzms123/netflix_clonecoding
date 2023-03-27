@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { StButton, StFont,  StSmfont } from "./Singstyled";
-import CheckboxLabels from "../../components/CheckboxLabels";
-import {instance} from "../../axios/api";
-import {ESInput} from "../../hook/useInput"
+
+import { StButton, StFont, StSmfont } from "./Singstyled";
+import CheckboxLabels from "./CheckboxLabels";
+import instance from "../../axios/api";
+import { ESInput, useInput } from "../../hook/useInput";
 import { Navigate } from "react-router-dom";
 // import { useMutation } from 'react-query';
 // import useNavigate from "../../hook/useNavigate";
+// =============== EH =================
+import { Helmet } from "react-helmet";
+// =============== EH =================
 
 function Signup() {
-
   // const {navigateTo} = useNavigate();
   // const isLogin = useSelector(state => state.login);
 
@@ -19,22 +22,24 @@ function Signup() {
   const [user,setUser] = useState({
     email:"",
     password:"",
+
   });
 
-  const chgInputHandler = e => {
-    const {value,name} = e.target;
-    setUser(old => {
-      return {...old,[name]:value}
+  const chgInputHandler = (e) => {
+    const { value, name } = e.target;
+    setUser((old) => {
+      return { ...old, [name]: value };
     });
   };
 
-  const submitBtnHandler = e => {
+  const submitBtnHandler = (e) => {
     e.preventDefault();
     navi('/signup2')
     instance.post("/singup",user)
+
   };
 
-//이 부분이 처리되서 먼저 입력안했는데 넘어감
+  //이 부분이 처리되서 먼저 입력안했는데 넘어감
   // const onNavigate = () => {
   //   navigateTo('/signup2')
   // }
@@ -42,15 +47,19 @@ function Signup() {
   // const signupMutation = useMutation(
   //   data => axios.post('/',data),
   //   {
-      
+
   //   },
   //   {
 
   //   }
   // )
 
-
   return (
+  <>
+      <Helmet>
+        <title>Login - Netflix</title>
+      </Helmet>
+     
     <StForm  onSubmit={submitBtnHandler}>
       <div>
         <StSmfont>1/3단계</StSmfont>
@@ -92,12 +101,12 @@ function Signup() {
         <br />
         <StButton>동의하고 계속</StButton>
         </div>
-    </StForm>
-  )
-};
+      </StForm>
+    </>
+  );
+}
 
 export default Signup;
-
 
 //전체
 const StForm = styled.form`

@@ -26,6 +26,7 @@ function Router() {
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:categoryId" element={<Categories />} />
         <Route path="/movies/:categoryId/:streamId" element={<Detail />} />
+
       </Routes>
     </BrowserRouter>
   )

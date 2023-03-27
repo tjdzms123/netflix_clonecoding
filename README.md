@@ -36,14 +36,38 @@ git commit
 
 ##회원가입
 
-##추가 패키지 설치
--체크박스 
+##추가 패키지 설치 -체크박스
 yarn add @mui/material @emotion/react @emotion/styled
 -tanstack
 리액트 쿼리
-@tanstack/react-query
-@tanstack/react-query-devtools
--비동기 통신
-axios
--
-json-server
+yarn add @tanstack/react-query
+yarn add @tanstack/react-query-devtools -비동기 통신
+yarn add axios
+
+- yarn add json-server
+
+## EH
+
+yarn add react-intersection-observer (취소)
+yarn add react-helmet (페이지마다 meta title 지정용)
+
+# EH > home > components
+
+- 작업 중 03/27 10:10-
+  - [V] Header
+    - [V] 영역
+      - [V] Height 조정 > heigth 20px->30px && >padding 20px 0; -> 25px 0;
+  - [ ] CardSlider (pages > Test.jsx)
+    - [V] 기능
+    - [V] 영역
+    - [ ] CSS
+    - [ ] Contents
+      - [ ] Img Unvisible Issue
+  - [ ] VideoDesc
+    - [ ] 영역
+    - [ ] CSS
+    - [ ] Contents
+  - [ ] Footer
+    - [V] 영역
+    - [ ] CSS
+    - [ ] Contents
