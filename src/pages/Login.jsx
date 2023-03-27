@@ -9,8 +9,11 @@ import { ESInput } from "../hook/useInput";
 import { cookies } from "../shared/cookies";
 // import jwt_decode from "jwt"
 import { Helmet } from "react-helmet";
+import { useDispatch } from "react-redux";
+import { __login } from "../redux/modules/loginSlice";
 
 function Login() {
+  const dispatch = useDispatch();
   const navi = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -26,11 +29,11 @@ function Login() {
 
   const submitBtnHandler = async (e) => {
     e.preventDefault();
-    // const response = await dispatch(__login(user));
-    // if (response.type === "logIn/fulfilled") {
-    //   dispatch(isLoginActions.login());
-    alert("로그인 되었습니다.");
-    navi("/");
+    const response = await dispatch(__login(user));
+    if (response.type === "LOGIN/fulfilled") {
+      alert("로그인 되었습니다.");
+      navi("/");
+    }
   };
 
   //가드
