@@ -79,12 +79,18 @@ yarn add react-helmet (페이지마다 meta title 지정용)
 
 - 03/28 09:40-
 
-- [ ] src > shared > Router.js
+- [V] Hooking Guard
+
+  - [V] Hooking Guard with Token State
+    - [V] src> hook> guard> FalseGuard.jsx -> Movies, Home.jsx
+    - [V] src> hook> guard> TrueGuard.jsx -> Signup, Login.jsx
+
+- [] src > shared > Router.js
 
   - [V] Routering with Token State
-  - [] Guarding with Token State
-    - token ? /signup1-3 & /login
-      - No routes matched location Issue
-      - -> Router.js 25ln을 isLogin State로 처리하면 해결됨.
+    - Router.js -> token ? /signup1-3 & /login
+      - "No routes matched location Issue"
+      - -> Will be Resolved with
+      - -> Router.js 25ln -> isLogin Global State
 
 - [V] src > utils > createQueryKey.js

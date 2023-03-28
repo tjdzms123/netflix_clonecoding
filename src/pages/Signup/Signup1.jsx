@@ -6,26 +6,13 @@ import { StButton, StFont, StSmfont } from "./Singstyled";
 import CheckboxLabels from "../../components/CheckboxLabels";
 import { instance } from "../../axios/api";
 import { ESInput, useInput } from "../../hook/useInput";
-// import { useMutation } from 'react-query';
-// import useNavigate from "../../hook/useNavigate";
-// =============== EH =================
 import { Helmet } from "react-helmet";
 import { __signUp } from "../../redux/modules/loginSlice";
 import { useDispatch } from "react-redux";
-import { cookies } from "../../shared/cookies";
-// =============== EH =================
+import TrueGuard from "../../hook/guard/TrueGuard";
 
 function Signup() {
-  // ========== EH "Add Guard" ===========
-  useEffect(() => {
-    const token = cookies.get("token");
-    if (token) {
-      navi("/");
-    }
-  });
-  // ========== EH "Add Guard" ===========
-  // const {navigateTo} = useNavigate();
-  // const isLogin = useSelector(state => state.login);
+  TrueGuard();
 
   const navi = useNavigate();
   const dispatch = useDispatch();

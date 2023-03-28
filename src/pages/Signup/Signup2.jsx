@@ -1,22 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { StButton, StFont, StSmfont } from "./Singstyled";
 // =============== EH =================
 import { Helmet } from "react-helmet";
-import { cookies } from "../../shared/cookies";
+import TrueGuard from "../../hook/guard/TrueGuard";
 // =============== EH =================
 
 function Signup2() {
   const navi = useNavigate();
-  // ========== EH "Add Guard" ===========
-  useEffect(() => {
-    const token = cookies.get("token");
-    if (token) {
-      navi("/");
-    }
-  });
-  // ========== EH "Add Guard" ===========
+  TrueGuard();
 
   const onNavigate = () => {
     navi("/signup3");
