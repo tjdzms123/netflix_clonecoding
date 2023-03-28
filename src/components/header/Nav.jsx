@@ -6,14 +6,14 @@ import { HiOutlineSearch } from "react-icons/hi";
 import { BiBell } from "react-icons/bi";
 import { cookies } from "../../shared/cookies";
 import { useDispatch } from "react-redux";
+import { isLoginActions } from "../../../src/redux/modules/authSlice";
 
 function Nav() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navi = useNavigate();
 
   const logout = () => {
-    // dispatch(isLoginActions.logout());
-    cookies.remove("token");
+    dispatch(isLoginActions.logout());
     alert("로그아웃 되었습니다.");
     navi("/login");
   };

@@ -6,7 +6,6 @@ import Footer from "../components/home/Footer";
 import VideoPlayer from "../components/home/VideoPlayer";
 import { Helmet } from "react-helmet";
 import FalseGuard from "../hook/guard/FalseGuard";
-// import VideoDesc from ".  ./components/home/VideoDesc";
 
 function Home() {
   FalseGuard();
