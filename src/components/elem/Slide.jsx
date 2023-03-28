@@ -32,14 +32,6 @@ const ImageSlider = ({ movies }) => {
 
   const modalState = useSelector((state) => state.modalSlice.modal);
 
-  // const response = useQuery({
-  //   queryKey: ["GET_ALLMOVIES"],
-  //   queryFn: async () => {
-  //     const data = await instance.get(`/movies`);
-  //     console.log(data);
-  //   },
-  // });
-
   const handlePrevClick = () => {
     setCurrentSlide((currentSlide) =>
       currentSlide === 0 ? images.length - 1 : currentSlide - 1
@@ -114,7 +106,7 @@ const StSliderHeader = styled.div`
   align-items: center;
   margin-top: 10px;
   margin-bottom: 15px;
-  padding: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 50px;
 `;
 
 const StContainer = styled.div`

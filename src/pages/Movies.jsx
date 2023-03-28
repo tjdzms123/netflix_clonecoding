@@ -8,6 +8,7 @@ import { instance } from "../axios/api";
 
 function Movies() {
   FalseGuard();
+  
   const { data } = useQuery({
     queryKey: ["GET_MOVIES"],
     queryFn: async () => {
