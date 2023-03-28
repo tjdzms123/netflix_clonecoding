@@ -3,16 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-
-import instance from "../axios/api";
 import { ESInput } from "../hook/useInput";
 import { cookies } from "../shared/cookies";
 // import jwt_decode from "jwt"
 import { Helmet } from "react-helmet";
 import { useDispatch } from "react-redux";
 import { __login } from "../redux/modules/loginSlice";
+import TrueGuard from "../hook/guard/TrueGuard";
 
 function Login() {
+  TrueGuard();
   const dispatch = useDispatch();
   const navi = useNavigate();
   const [user, setUser] = useState({
