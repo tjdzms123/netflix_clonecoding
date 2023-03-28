@@ -5,7 +5,7 @@ import { instance } from "../../axios/api";
 
 //초기값
 const initialState = {
-  profile: [],
+  allProfiles: [],
   isLoading: false,
   isError: false,
   isSuccess: false,
