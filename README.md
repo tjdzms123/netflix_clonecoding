@@ -54,20 +54,43 @@ yarn add react-helmet (페이지마다 meta title 지정용)
 # EH > home > components
 
 - 작업 중 03/27 10:10-
+
+- [ ] Home.jsx
+
   - [V] Header
     - [V] 영역
       - [V] Height 조정 > heigth 20px->30px && >padding 20px 0; -> 25px 0;
   - [ ] CardSlider (pages > Test.jsx)
     - [V] 기능
     - [V] 영역
-    - [ ] CSS
+    - [V] CSS
     - [ ] Contents
       - [ ] Img Unvisible Issue
   - [ ] VideoDesc
-    - [ ] 영역
+    - [V] 영역
     - [ ] CSS
     - [ ] Contents
   - [ ] Footer
     - [V] 영역
     - [ ] CSS
     - [ ] Contents
+  - [ ] Movies.jsx
+    - [V] CRUD GET REQ CHECK with TANSTACK
+
+- 03/28 09:40-
+
+- [V] Hooking Guard
+
+  - [V] Hooking Guard with Token State
+    - [V] src> hook> guard> FalseGuard.jsx -> Movies, Home.jsx
+    - [V] src> hook> guard> TrueGuard.jsx -> Signup, Login.jsx
+
+- [] src > shared > Router.js
+
+  - [V] Routering with Token State
+    - Router.js -> token ? /signup1-3 & /login
+      - "No routes matched location Issue"
+      - -> Will be Resolved with
+      - -> Router.js 25ln -> isLogin Global State
+
+- [V] src > utils > createQueryKey.js

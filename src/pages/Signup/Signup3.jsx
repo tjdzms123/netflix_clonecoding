@@ -4,9 +4,12 @@ import styled from "styled-components";
 import { StButton, StFont, StSmfont } from "./Singstyled";
 // =============== EH =================
 import { Helmet } from "react-helmet";
+import TrueGuard from "../../hook/guard/TrueGuard";
 // =============== EH =================
 
 function Signup3() {
+  TrueGuard();
+
   const navi = useNavigate();
 
   const onNavigate = () => {

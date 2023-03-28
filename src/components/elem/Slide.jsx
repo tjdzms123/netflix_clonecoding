@@ -1,6 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { instance } from "../../axios/api";
 import Detail from "../../pages/Detail";
 import { modalOnOff } from "../../redux/modules/modalSlice";
 import { ModalBackground, ModalContent, ModalOpenTrigger } from "./Modal";
@@ -29,6 +31,14 @@ const ImageSlider = ({ movies }) => {
   const [movieId, setMovieId] = useState(0);
 
   const modalState = useSelector((state) => state.modalSlice.modal);
+
+  // const response = useQuery({
+  //   queryKey: ["GET_ALLMOVIES"],
+  //   queryFn: async () => {
+  //     const data = await instance.get(`/movies`);
+  //     console.log(data);
+  //   },
+  // });
 
   const handlePrevClick = () => {
     setCurrentSlide((currentSlide) =>

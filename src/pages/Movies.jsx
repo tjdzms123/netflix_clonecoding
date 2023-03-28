@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import ImageSlider from "../components/elem/Slide";
+import FalseGuard from "../hook/guard/FalseGuard";
 import { useQuery } from "@tanstack/react-query";
 import { instance } from "../axios/api";
 
 function Movies() {
+  FalseGuard();
   const { data } = useQuery({
     queryKey: ["GET_MOVIES"],
     queryFn: async () => {
@@ -13,8 +15,6 @@ function Movies() {
       return data.movies;
     },
   });
-
-
   return (
     <>
       <Helmet>
