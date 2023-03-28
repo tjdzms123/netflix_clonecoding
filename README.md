@@ -81,7 +81,10 @@ yarn add react-helmet (페이지마다 meta title 지정용)
 
 - [ ] src > shared > Router.js
 
-  - [ ] Routering with Token State
-  - [ ] Guarding with Token State
+  - [V] Routering with Token State
+  - [] Guarding with Token State
+    - token ? /signup1-3 & /login
+      - No routes matched location Issue
+      - -> Router.js 25ln을 isLogin State로 처리하면 해결됨.
 
-- [ ] src > utils > createQueryKey.js
+- [V] src > utils > createQueryKey.js
