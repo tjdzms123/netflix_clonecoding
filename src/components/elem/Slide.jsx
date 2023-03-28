@@ -32,14 +32,6 @@ const ImageSlider = ({ movies }) => {
 
   const modalState = useSelector((state) => state.modalSlice.modal);
 
-  // const response = useQuery({
-  //   queryKey: ["GET_ALLMOVIES"],
-  //   queryFn: async () => {
-  //     const data = await instance.get(`/movies`);
-  //     console.log(data);
-  //   },
-  // });
-
   const handlePrevClick = () => {
     setCurrentSlide((currentSlide) =>
       currentSlide === 0 ? images.length - 1 : currentSlide - 1
@@ -114,7 +106,7 @@ const StSliderHeader = styled.div`
   align-items: center;
   margin-top: 10px;
   margin-bottom: 15px;
-  padding: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 50px;
 `;
 
 const StContainer = styled.div`
@@ -136,7 +128,6 @@ const StSlideContainer = styled.div`
   transform: translateX(${(props) => props.translateX}%);
   transition: transform 0.4s ease-in-out;
   gap: 15px;
-
 `;
 
 const StSlideThum = styled.img`
@@ -160,7 +151,8 @@ const StSlideThum = styled.img`
 
   @media screen and (max-width: 480px) {
     /* 뷰포트가 480px 이하인 경우 2개씩 보이도록 크기 조정 */
-    flex: 
+    /* flex: ; */
+  }
 `;
 
 const StArrow = styled.button`
