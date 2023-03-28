@@ -1,5 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import styled from "styled-components";
+import { instance } from "../axios/api";
 import { ESInput, useInput } from "../hook/useInput";
 import { StSmfont } from './Signup/Singstyled';
 
@@ -8,16 +10,28 @@ function ProfileDetail() {
 
     const [newProfile, newProfileHandler, setNewProfile] = useInput('');
 
+    const {data,isLoading,isError,isSuccess} = useQuery({
+      querykey: ["GET_PROFILE"],
+      queryFn: async () => {
+        const data = await instance.get("/profile")
+        return data.data;
+      },
+    })
+
+    // if (!data || isLoading) return <div>로딩중 ..</div>
+    if (isError) return <div>에러 !!!</div>
+
   return (
     
   <StDetailBox>
   <StDiv>
      <StHeader>
-         <StButton>프로필 추가</StButton>
-         <StImage src=''></StImage>
+
+         <StImage key='netflix-profile1.png' src='img/netflix-profile1.png' />
+
          <ESInput type="text" 
          name='newProfile'
-         placeholder='프로필의 닉네임을 입력해주세요.'
+         placeholder='닉네임을 입력해주세요.'
          value={newProfile}
         onChange={newProfileHandler}
          required
@@ -32,14 +46,14 @@ function ProfileDetail() {
         </select>
         <StSmfont>이 프로필에서는 모든 관람등급의 콘텐츠가 표시됩니다.</StSmfont>
         {/* 성인이냐 청소년이냐 -> 성인이면 모든 관람msg 아니면 청소년 관람자 */}
-        <button>수정</button>
+        <StButton>수정</StButton>
     </div>
 
     <div>
         <StMenu>
-            <button>저장</button>
-            <button>취소</button>
-            <button>프로필 삭제</button>
+            <StButton>저장</StButton>
+            <StButton>취소</StButton>
+            <StButton>프로필 삭제</StButton>
         </StMenu>
     </div>
   </StDiv>
@@ -82,11 +96,9 @@ const StHeader = styled.div`
     margin-bottom: 20px;
 `
 
-const StImage = styled.image`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
+const StImage = styled.img`
+  width: 200px;
+  height: 200px;
   `
 
   const StMenu = styled.div`

@@ -1,18 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { instance } from "../../axios/api";
-import axios from 'axios';
+import { cookies } from "../../shared/cookies";
 
 const initialState = {
     signup: {
         email: '',
         password: '',
         isLogin: false,
-        isLoading: false,
+        isLoading: cookies.get("token") ? true : false,
         isError: null,
     }
 };
 //회원가입 -> post
 //로그인 -> post
+//로그인,로그아웃 action 만들기/ isLogin 전역상태
 export const __signUp = createAsyncThunk(
     "SIGN_UP",
     async (payload, thunkAPI) => {
@@ -47,10 +48,15 @@ export const __login = createAsyncThunk(
 const signupSlice = createSlice({
     name: "signup",
     initialState,
-    extraReducers: {
-
+    reducers: {
+        login(state) {
+            state.isLogin = true;
+        },
+        logout(state) {
+            state.isLogin = false;
+            cookies.remove("token")
+        }
     }
 });
 
-export const { } = signupSlice.actions;
 export default signupSlice.reducer;

@@ -13,6 +13,7 @@ function Profile() {
 
   const dispatch = useDispatch();
 
+  //모달
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const modalState = useSelector((state) => state.modalSlice.modal);
@@ -29,22 +30,6 @@ function Profile() {
     dispatch(modalOnOff(modalState));
   };
 
-  // if(isLoading || isError) {
-  //   return <div> ... 로딩 중입니다.</div>
-  // }
-
-  // const onClickDetail = () => {
-  //   dispatch(modalOnOff(modalState));
-  // };
-
-  // const images = [
-  //   "netflix-profiles1"
-  // ]
-
-  // useEffect(()=>
-  // dispatch(__getprofile())
-  // ,[])
-
   return ( 
     <StDiv>
       <p>Netfilx를 시청할 프로필을 선택하세요.</p>
@@ -58,6 +43,13 @@ function Profile() {
       images.map((image, index) => (
         <StSlide key={index} src={image} onClick={onClickDetail} />
       ))
+      }
+      {
+        profile.map((item)=> {
+          <div key={item.id}>
+            {item.nickname}
+          </div>
+        })
       }
     </StSlideContainer>
     {/* <StSlideContainer>

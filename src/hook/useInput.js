@@ -10,7 +10,7 @@ export const useInput = (payload) => {
   return [value, onChangeHandler, setValue]
 };
 
-export const ESInput = ({ type, placeholder, value, onChange, name }) => {
+export const ESInput = ({ type, placeholder, value, onChange, name, width }) => {
   return (
     <StyledInput
       type={type}
@@ -18,31 +18,16 @@ export const ESInput = ({ type, placeholder, value, onChange, name }) => {
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      width={width}
       required
           />
   );
 };
 
-// const StyledInput = styled.input`
-//   border: none;
-//   border-bottom: 1.5px solid #333333;
-//   height: 40px;
-//   width: 350px;
-//   outline: none;
-//   padding-left: 12px;
-//   padding-right: 12px;
-//   margin-bottom: 5px;
-//   &:focus-within {
-//     border-radius: 10px;
-//     box-shadow: rgba(100, 100, 100, 0.3) 0px 8px 16px -8px;
-//     border-bottom: 1.5px solid #c9c9c9;
-//     background-color: rgba(45, 32, 167, 0.1);
-//   }
-// `;
 
 //input
 const StyledInput = styled.input`
-  width: 93%;
+  width: ${props => props.width || '90%'};
   height: 40px;
   padding: 10px;
   margin-bottom: 15px; 

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { instance } from "../../axios/api";
 // 쿠키값 넣어주기
 
 //초기값
@@ -14,11 +15,14 @@ const initialState = {
     "GET_PROFILE",
     async (payload,thunkAPI) => {
       try {
-        const data = await axios.get(`${process.env.REACT_APP_NETFLIX_KEY}/profile/${payload}`)
+        const data = await instance.post("/profile", payload)
+        // const data = await axios.get(`${process.env.REACT_APP_NETFLIX_KEY}/profile/${payload}`)
         return thunkAPI.fulfillWithValue(data.data)
       }
       catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data.message)
+        const errorMsg = error.response.data.errorMessage;
+        alert(`${errorMsg}`)
+        return thunkAPI.rejectWithValue(error)
       }
     }
   );
