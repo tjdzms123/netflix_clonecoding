@@ -2,16 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import ImageSlider from "../components/elem/Slide";
-
+import { useQuery } from "@tanstack/react-query";
+import { instance } from "../axios/api";
 
 function Movies() {
+  const { data } = useQuery({
+    queryKey: ["GET_MOVIES"],
+    queryFn: async () => {
+      const { data } = await instance.get(`/movies`);
+      return data.movies;
+    },
+  });
+
+
   return (
     <>
       <Helmet>
         <title>Netflix</title>
       </Helmet>
       <StHeader />
-      <ImageSlider />
+      <ImageSlider movies={data} />
     </>
   );
 }
