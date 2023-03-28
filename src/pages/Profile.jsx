@@ -10,9 +10,11 @@ import {
   ModalOpenTrigger,
 } from "../components/elem/Modal";
 import ProfileDetail from "./ProfileDetail";
+import { instance } from "../axios/api";
+
 
 function Profile() {
-  const { profile, isLoading, isError } = useSelector((state) => state.profile);
+  const  allProfiles  = useSelector((state) => state.allProfiles);
 
   const dispatch = useDispatch();
 
@@ -32,6 +34,44 @@ function Profile() {
     dispatch(modalOnOff(modalState));
   };
 
+  const token = decodeURI(document.cookie).replace("token=Bearer ", "");
+  console.log("Profile.jsx token value---->", token);
+
+  // const {mutate} = useMutation({
+  //   mutationFn: async (payload) => {
+  //     const { data } = await instance.post(`/profile`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       }
+  //       ,
+  //       body: {
+  //         profileName: "예상기"
+  //       }
+  //     });
+  //     console.log("토큰", token);
+  //     console.log("데이터", data);
+  //     return data;
+  //   },
+  // });
+
+  
+  
+  
+  // const response1 = useQuery({
+  //   queryKey: ["GET_PROFILE"],
+  //   queryFn: async () => {
+  //     const { data } = await instance.get(`/profile`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     console.log(data);
+  //     return data;
+  //   },
+  // });
+
+
+
   return (
     <StDiv>
       <p>Netfilx를 시청할 프로필을 선택하세요.</p>
@@ -41,12 +81,16 @@ function Profile() {
       </ModalOpenTrigger>
       <StContainer>
         <StSlideContainer>
-          {images.map((image, index) => (
+          {
+          images.map((image, index) => (
             <StSlide key={index} src={image} onClick={onClickDetail} />
-          ))}
-          {profile.map((item) => {
+          ))
+          }
+          {
+          allProfiles?.map((item) => {
             <div key={item.id}>{item.nickname}</div>;
-          })}
+          })
+          }
         </StSlideContainer>
         {/* <StSlideContainer>
     <img key='netflix-profile4.png' src='img/netflix-profile4.png' onClick={onClickDetail} />

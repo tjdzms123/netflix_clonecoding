@@ -1,14 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { instance } from "../axios/api";
 import { ESInput, useInput } from "../hook/useInput";
 import { StSmfont } from "./Signup/Singstyled";
+import { useMutation } from "@tanstack/react-query"
 
 function ProfileDetail() {
+
+  const [profileId, setProfiledId] = useState('');
   const [newProfile, newProfileHandler, setNewProfile] = useInput("");
 
-  const { data, isLoading, isError, isSuccess } = useQuery({
+  const { data } = useQuery({
     querykey: ["GET_PROFILE"],
     queryFn: async () => {
       const { data } = await instance.get(`/profile`);
@@ -16,8 +19,30 @@ function ProfileDetail() {
       return data;
     },
   });
+  
+  const token = decodeURI(document.cookie).replace("token=Bearer ", "");
+
+  const { mutate, isLoading, isSuccess } = useMutation({
+    mutationFn: async (payload) => {
+      console.log("mutation Working");
+      console.log(payload);
+      const { data } = await instance.post(`/profile`,
+      {profileName: payload}, //request body
+      {
+        headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              })
+              return data;
+  }})
 
   console.log(data); //undefined
+
+  const submitButtonHandler = (e) => {
+    e.preventDefault();
+    console.log(newProfile);
+    mutate(newProfile);
+  }
 
   // if (!data || isLoading) return <div>로딩중 ..</div>
   // if (isError) return <div>에러 !!!</div>
@@ -27,15 +52,15 @@ function ProfileDetail() {
       <StDiv>
         <StHeader>
           <StImage key="netflix-profile1.png" src="img/netflix-profile1.png" />
-
+          <form onSubmit={submitButtonHandler}>
           <ESInput
             type="text"
-            name="newProfile"
             placeholder="닉네임을 입력해주세요."
             value={newProfile}
             onChange={newProfileHandler}
             required
-          />
+          />        
+          </form>
         </StHeader>
 
         <div>
@@ -53,7 +78,7 @@ function ProfileDetail() {
 
         <div>
           <StMenu>
-            <StButton>저장</StButton>
+            <StButton onClick={()=>mutate()}>저장</StButton>
             <StButton>취소</StButton>
             <StButton>프로필 삭제</StButton>
           </StMenu>
