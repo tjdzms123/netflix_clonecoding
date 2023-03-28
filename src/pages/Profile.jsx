@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { ESInput, useInput } from '../hook/useInput';
 import { __getprofile } from '../redux/modules/ProfileSlice';
-import { StSmfont } from './Signup/Singstyled';
 import Button from '../components/elem/Button';
 import { modalOnOff } from '../redux/modules/modalSlice';
-import { ModalBackground,
-  ModalContent,
-  ModalOpenTrigger} from '../components/elem/Modal'
-import Detail from './Detail';
+import { ModalBackground,ModalContent,ModalOpenTrigger} from '../components/elem/Modal';
+import ProfileDetail from './ProfileDetail';
 
 function Profile() {
 
@@ -17,7 +13,6 @@ function Profile() {
 
   const dispatch = useDispatch();
 
-  const [newProfile, newProfileHandler, setNewProfile] = useInput('');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const modalState = useSelector((state) => state.modalSlice.modal);
@@ -25,22 +20,14 @@ function Profile() {
   const images = [
     "img/netflix-profile1.png",
     "img/netflix-profile2.png",
-    "img/netflix-profile3.png"  ]
+    "img/netflix-profile3.png",
+    "img/netflix-profile4.png"
+  ];
 
-  const handlePrevClick = () => {
-    setCurrentSlide((currentSlide) =>
-      currentSlide === 0 ? images.length - 1 : currentSlide - 1
-    );
-  };
-
-  const handleNextClick = () => {
-    setCurrentSlide((currentSlide) => (currentSlide + 1) % images.length);
-  };
 
   const onClickDetail = () => {
     dispatch(modalOnOff(modalState));
   };
-
 
   // if(isLoading || isError) {
   //   return <div> ... 로딩 중입니다.</div>
@@ -61,16 +48,7 @@ function Profile() {
   return ( 
     <StDiv>
       <p>Netfilx를 시청할 프로필을 선택하세요.</p>
-        <div>
-        {/* <Modal>프로필1</Modal> */}
-        {
-          profile.map((item) => (
-            <div key={item.id}>
-              {/* {item.nickname} */}
-              </div>
-          ))
-        }
-      </div>
+
     <ModalOpenTrigger>
     <ModalBackground />
   </ModalOpenTrigger>
@@ -82,45 +60,16 @@ function Profile() {
       ))
       }
     </StSlideContainer>
+    {/* <StSlideContainer>
+    <img key='netflix-profile4.png' src='img/netflix-profile4.png' onClick={onClickDetail} />
+    </StSlideContainer> */}
+
   </StContainer>
   <ModalContent>
-    <Detail />
+    <ProfileDetail />
+    {/* 프로필 추가 모달창 부분 */}
   </ModalContent>
   </StDiv>
-
-// 모달 안에 사용할 부분
-  // <StDiv>
-  //   <StHeader>
-  //       <StButton>프로필 추가</StButton>
-  //       <StImage src=''></StImage>
-  //       <ESInput type="text" 
-  //       name='newProfile'
-  //       placeholder='프로필의 닉네임을 입력해주세요.'
-  //       value={newProfile}
-  //       onChange={newProfileHandler}
-  //       required
-  //       />
-  //   </StHeader>
-
-  //   <div>
-  //       <p>관람등급 설정 :</p>
-  //       <select name="size" id="">
-  //           <option value="성인">성인</option>
-  //           <option value="청소년">19세 미만 청소년</option>
-  //       </select>
-  //       <StSmfont>이 프로필에서는 모든 관람등급의 콘텐츠가 표시됩니다.</StSmfont>
-  //       {/* 성인이냐 청소년이냐 -> 성인이면 모든 관람msg 아니면 청소년 관람자 */}
-  //       <button>수정</button>
-  //   </div>
-
-  //   <div>
-  //       <StMenu>
-  //           <button>저장</button>
-  //           <button>취소</button>
-  //           <button>프로필 삭제</button>
-  //       </StMenu>
-  //   </div>
-  // </StDiv>
   )
 }
 
@@ -149,41 +98,6 @@ const StDiv = styled.div`
   font-size: 14px;
 `
 
-const StHeader = styled.div`
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-`
-
-const StImage = styled.image`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
-  `
-
-  const StMenu = styled.div`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-  li {
-    display: inline-block;
-    margin-right: 10px;
-  }
-  `
-
-const StButton = styled.button`
-  background-color: #333;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  `
-
-  //////////////////////////////////////////////////////////
-  
-
 const StContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -205,7 +119,7 @@ const StSlideContainer = styled.div`
 `
 
 const StSlide = styled.img`
-  width: 40%;
+  width: 20%;
   max-width: 200px;
   margin-bottom: 20px;
   height: 100%;
