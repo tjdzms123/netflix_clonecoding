@@ -54,20 +54,34 @@ yarn add react-helmet (페이지마다 meta title 지정용)
 # EH > home > components
 
 - 작업 중 03/27 10:10-
+
+- [ ] Home.jsx
+
   - [V] Header
     - [V] 영역
       - [V] Height 조정 > heigth 20px->30px && >padding 20px 0; -> 25px 0;
   - [ ] CardSlider (pages > Test.jsx)
     - [V] 기능
     - [V] 영역
-    - [ ] CSS
+    - [V] CSS
     - [ ] Contents
       - [ ] Img Unvisible Issue
   - [ ] VideoDesc
-    - [ ] 영역
+    - [V] 영역
     - [ ] CSS
     - [ ] Contents
   - [ ] Footer
     - [V] 영역
     - [ ] CSS
     - [ ] Contents
+  - [ ] Movies.jsx
+    - [V] CRUD GET REQ CHECK with TANSTACK
+
+- 03/28 09:40-
+
+- [ ] src > shared > Router.js
+
+  - [ ] Routering with isLogin State
+  - [ ] Guarding with Token State
+
+- [ ] src > utils > createQueryKey.js

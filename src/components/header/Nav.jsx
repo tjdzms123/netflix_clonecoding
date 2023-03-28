@@ -1,10 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Row } from "../elem/Flex";
 import { HiOutlineSearch } from "react-icons/hi";
 import { BiBell } from "react-icons/bi";
+import { cookies } from "../../shared/cookies";
+
 function Nav() {
+  const navi = useNavigate();
+  const logout = () => {
+    cookies.remove("token");
+    alert("로그아웃 되었습니다.");
+    navi("/login");
+  };
+
   return (
     <StyledNav>
       <Row style={{ paddingLeft: "27.441px", gap: "20px" }}>
@@ -31,11 +40,22 @@ function Nav() {
             <BiBell />
           </HeaderLi2>
           <HeaderLi1 style={{ width: "60px" }}>
-            <HeaderLink to="/login">login</HeaderLink>
-            {/* login button 디자인 추후 수정하겠습니다. */}
+            {cookies.get("token") ? (
+              <p type="button" style={{ cursor: "pointer" }} onClick={logout}>
+                Logout
+              </p>
+            ) : (
+              <p
+                type="button"
+                style={{ cursor: "pointer" }}
+                onClick={() => navi("/login")}
+              >
+                LogIn
+              </p>
+            )}
           </HeaderLi1>
         </HeaderUl>
-        {/* <Profile src="img/EHprofile1.png" /> */}
+        <Profile src="img/EHprofile1.png" />
       </Row>
     </StyledNav>
   );
