@@ -5,27 +5,70 @@ import { instance } from "../axios/api";
 import { ESInput, useInput } from "../hook/useInput";
 import { StSmfont } from "./Signup/Singstyled";
 import { useMutation } from "@tanstack/react-query"
+import { useParams } from "react-router-dom";
 
 function ProfileDetail() {
 
   const [profileId, setProfiledId] = useState('');
   const [newProfile, newProfileHandler, setNewProfile] = useInput("");
-
-  const { data } = useQuery({
-    querykey: ["GET_PROFILE"],
-    queryFn: async () => {
-      const { data } = await instance.get(`/profile`);
-      console.log("안쪽", data);
-      return data;
-    },
-  });
-  
   const token = decodeURI(document.cookie).replace("token=Bearer ", "");
 
+  //전체조회
+  const {data1} = useQuery({
+    queryKey: ["GET_PROFILE"],
+    queryFn: async () => {
+      const {data1} = await instance.get(`/profile`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("allProfiles", data1);
+      console.log("profileName", data1.allProfiles[0].profileName);
+      console.log("0번 프로필조회", data1.allProfiles[0]);
+      return data1;
+    },
+  });
+
+
+  console.log(data1);
+  console.log({data1});
+// console.log(data1);
+  //프로필 개별조회
+
+  const { data2 } = useQuery({    
+    querykey: ["GET_INDIV_PROFILE"],
+    queryFn: async () => {
+      const { data2 } = await instance.get(`/profile/:profileIdx`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return data2;
+    },
+  });
+
+
+  // console.log("0번 프로필 조회", {data}.allprofiles);
+  
+//   const profile1 = async() => {
+//     await instance.get(`/profile`,
+//   {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   }).allProfiles[0] 
+//   console.log("profile check", profile1)
+// }
+
+
+  //추가
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: async (payload) => {
-      console.log("mutation Working");
-      console.log(payload);
+      // console.log("mutation Working");
+      // console.log(payload);
       const { data } = await instance.post(`/profile`,
       {profileName: payload}, //request body
       {
@@ -36,7 +79,6 @@ function ProfileDetail() {
               return data;
   }})
 
-  console.log(data); //undefined
 
   const submitButtonHandler = (e) => {
     e.preventDefault();
