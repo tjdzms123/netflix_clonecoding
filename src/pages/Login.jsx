@@ -33,7 +33,7 @@ function Login() {
     if (response.type === "LOGIN/fulfilled") {
       dispatch(isLoginActions.login());
       alert("로그인 되었습니다.");
-      navi("/");
+      navi("/profile");
     }
   };
 
