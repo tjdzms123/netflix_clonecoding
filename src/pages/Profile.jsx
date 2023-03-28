@@ -11,6 +11,7 @@ import {
 } from "../components/elem/Modal";
 import ProfileDetail from "./ProfileDetail";
 import { instance } from "../axios/api";
+import { useQuery } from "@tanstack/react-query";
 
 
 function Profile() {
@@ -54,9 +55,6 @@ function Profile() {
   //   },
   // });
 
-  
-  
-  
   // const response1 = useQuery({
   //   queryKey: ["GET_PROFILE"],
   //   queryFn: async () => {
@@ -70,7 +68,16 @@ function Profile() {
   //   },
   // });
 
-
+//   const {response} = useQuery({
+//     querykey: ["GET_PROFILE"],
+//     queryFn: async () => {
+//       const {data} = await instance.get(`/profile`,
+//       {headers: { Authorization: `Bearer ${token}` }
+//     });
+//       return data;
+//     },
+//   });
+//  console.log(response);
 
   return (
     <StDiv>

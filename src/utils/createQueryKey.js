@@ -8,6 +8,7 @@ export const keys = {
     
     // * ================ profile ================= *
     GET_PROFILE: ["GET_PROFILE"],
+    GET_INDIV_PROFILE: ["GET_INDIV_PROFILE"],
     // * ================ profile ================= *
 
 }
