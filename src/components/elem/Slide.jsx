@@ -128,7 +128,6 @@ const StSlideContainer = styled.div`
   transform: translateX(${(props) => props.translateX}%);
   transition: transform 0.4s ease-in-out;
   gap: 15px;
-
 `;
 
 const StSlideThum = styled.img`
@@ -152,7 +151,8 @@ const StSlideThum = styled.img`
 
   @media screen and (max-width: 480px) {
     /* 뷰포트가 480px 이하인 경우 2개씩 보이도록 크기 조정 */
-    flex: 
+    /* flex: ; */
+  }
 `;
 
 const StArrow = styled.button`
