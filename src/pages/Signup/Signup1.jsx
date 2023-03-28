@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -12,9 +12,18 @@ import { ESInput, useInput } from "../../hook/useInput";
 import { Helmet } from "react-helmet";
 import { __signUp } from "../../redux/modules/loginSlice";
 import { useDispatch } from "react-redux";
+import { cookies } from "../../shared/cookies";
 // =============== EH =================
 
 function Signup() {
+  // ========== EH "Add Guard" ===========
+  useEffect(() => {
+    const token = cookies.get("token");
+    if (token) {
+      navi("/");
+    }
+  });
+  // ========== EH "Add Guard" ===========
   // const {navigateTo} = useNavigate();
   // const isLogin = useSelector(state => state.login);
 

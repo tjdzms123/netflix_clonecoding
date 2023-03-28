@@ -5,10 +5,14 @@ import { Row } from "../elem/Flex";
 import { HiOutlineSearch } from "react-icons/hi";
 import { BiBell } from "react-icons/bi";
 import { cookies } from "../../shared/cookies";
+import { useDispatch } from "react-redux";
 
 function Nav() {
+  // const dispatch = useDispatch();
   const navi = useNavigate();
+
   const logout = () => {
+    // dispatch(isLoginActions.logout());
     cookies.remove("token");
     alert("로그아웃 되었습니다.");
     navi("/login");

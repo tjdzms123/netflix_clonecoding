@@ -81,7 +81,7 @@ yarn add react-helmet (페이지마다 meta title 지정용)
 
 - [ ] src > shared > Router.js
 
-  - [ ] Routering with isLogin State
+  - [ ] Routering with Token State
   - [ ] Guarding with Token State
 
 - [ ] src > utils > createQueryKey.js
