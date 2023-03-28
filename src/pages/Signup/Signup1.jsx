@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 import { StButton, StFont, StSmfont } from "./Singstyled";
 import CheckboxLabels from "../../components/CheckboxLabels";
-import { instance } from "../../axios/api";
 import { ESInput, useInput } from "../../hook/useInput";
 import { Helmet } from "react-helmet";
 import { __signUp } from "../../redux/modules/loginSlice";

@@ -16,11 +16,9 @@ function Signup2() {
   };
   return (
     <>
-      //========= EH =============
       <Helmet>
         <title>Login - Netflix</title>
       </Helmet>
-      //========= EH =============
       <StDiv>
         {/* 아이콘 */}
         <StFont>

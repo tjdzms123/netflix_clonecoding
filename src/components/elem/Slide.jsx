@@ -20,11 +20,16 @@ const images = [
   "http://image.dongascience.com/Photo/2018/04/04452dc945a759b923317a6921bebd62.jpg",
 ];
 
-const ImageSlider = () => {
+const ImageSlider = ({ movies }) => {
+  console.log(movies);
   const dispatch = useDispatch();
 
   const [currentSlide, setCurrentSlide] = useState(0);
+
   const [isHovering, setIsHovering] = useState(false);
+
+  const [movieId, setMovieId] = useState(0);
+
   const modalState = useSelector((state) => state.modalSlice.modal);
 
   // const response = useQuery({
@@ -45,8 +50,10 @@ const ImageSlider = () => {
     setCurrentSlide((currentSlide) => (currentSlide + 1) % images.length);
   };
 
-  const onClickDetail = () => {
+  const onClickThum = (index) => {
     dispatch(modalOnOff(modalState));
+    setMovieId(index);
+    console.log(movieId);
   };
 
   return (
@@ -56,7 +63,9 @@ const ImageSlider = () => {
         <StIndicatorContainer>
           {isHovering
             ? images.map((image, index) => {
-                return <Indicator key={index} />;
+                return (
+                  <Indicator key={index} active={index === currentSlide} />
+                );
               })
             : null}
         </StIndicatorContainer>
@@ -74,7 +83,11 @@ const ImageSlider = () => {
         </StArrow>
         <StSlideContainer translateX={-currentSlide * 100}>
           {images.map((image, index) => (
-            <StSlide key={index} src={image} onClick={onClickDetail} />
+            <StSlideThum
+              key={index}
+              src={image}
+              onClick={() => onClickThum(index)}
+            />
           ))}
         </StSlideContainer>
         <StArrow
@@ -86,6 +99,7 @@ const ImageSlider = () => {
         </StArrow>
       </StContainer>
       <ModalContent>
+        {/* {클릭한 썸네일id값을 useState에 넣은 후 그 id 값과 같은 놈만 deatail에 내려주면 될듯?} */}
         <Detail />
       </ModalContent>
     </>
@@ -100,33 +114,34 @@ const StSliderHeader = styled.div`
   align-items: center;
   margin-top: 10px;
   margin-bottom: 15px;
-  padding: 0px 0px 0 45px;
+  padding: 0px 0px 0px 0px;
 `;
 
 const StContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   overflow-x: hidden;
   /* width: 80%; */
-  padding: 0px 40px 0px 40px;
+  /* padding: 0px 40px 0px 40px; */
 `;
 
 const StSlideContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  /* flex-direction: row; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* flex-wrap: wrap; */
   transform: translateX(${(props) => props.translateX}%);
   transition: transform 0.4s ease-in-out;
   gap: 15px;
-  justify-content: space-between;
+
 `;
 
-const StSlide = styled.img`
+const StSlideThum = styled.img`
   width: 30%;
   max-width: 200px;
-  /* min-width: 100px; */
   margin-bottom: 20px;
   height: 100%;
   max-height: 150px;
@@ -135,6 +150,17 @@ const StSlide = styled.img`
   position: relative;
   z-index: 0;
   cursor: pointer;
+  flex: 0 0 calc(20% - 20px); /* 5개씩 보이도록 크기 지정 */
+  margin: 10px;
+
+  @media screen and (max-width: 768px) {
+    /* 뷰포트가 768px 이하인 경우 3개씩 보이도록 크기 조정 */
+    flex: 0 0 calc(33.33% - 20px);
+  }
+
+  @media screen and (max-width: 480px) {
+    /* 뷰포트가 480px 이하인 경우 2개씩 보이도록 크기 조정 */
+    flex: 
 `;
 
 const StArrow = styled.button`

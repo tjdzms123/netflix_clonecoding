@@ -23,4 +23,3 @@ export const StButton = styled.button`
   margin-bottom: 15px; /* 버튼 아래 여백 */
   text-transform: uppercase; /* 대문자로 변환 */
 `
-
