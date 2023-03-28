@@ -1,71 +1,66 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { ESInput, useInput } from '../hook/useInput';
 import { __getprofile } from '../redux/modules/ProfileSlice';
-import { StSmfont } from './Signup/Singstyled';
+import Button from '../components/elem/Button';
+import { modalOnOff } from '../redux/modules/modalSlice';
+import { ModalBackground,ModalContent,ModalOpenTrigger} from '../components/elem/Modal';
+import ProfileDetail from './ProfileDetail';
 
 function Profile() {
 
-  // const {profile, isLoading, isError} = useSelector(state => state.profile);
+  const {profile, isLoading, isError} = useSelector((state) => state.profile);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const [newProfile, newProfileHandler, setNewProfile] = useInput('');
+  //모달
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const modalState = useSelector((state) => state.modalSlice.modal);
 
-  // if(isLoading || isError) {
-  //   return <div> ... 로딩 중입니다.</div>
-  // }
+  const images = [
+    "img/netflix-profile1.png",
+    "img/netflix-profile2.png",
+    "img/netflix-profile3.png",
+    "img/netflix-profile4.png"
+  ];
 
-  // useEffect(()=>
-  // dispatch(__getprofile())
-  // ,[])
-  
+
+  const onClickDetail = () => {
+    dispatch(modalOnOff(modalState));
+  };
+
   return ( 
-    // <div>
-    //   <p>Netfilx를 시청할 프로필을 선택하세요.</p>
-    //     <div>
-    //     {
-    //       profile.map((item) => (
-    //         <div key={item.id}>
-    //           {item.nickname}
-    //           </div>
-    //       ))
-    //     }
-    //   </div>
-    //   </div>  
+    <StDiv>
+      <p>Netfilx를 시청할 프로필을 선택하세요.</p>
 
-  <StDiv>
-    <StHeader>
-        <StButton>프로필 추가</StButton>
-        <StImage src=''></StImage>
-        <ESInput type="text" 
-        name='newProfile'
-        placeholder='프로필의 닉네임을 입력해주세요.'
-        value={newProfile}
-        onChange={newProfileHandler}
-        required
-        />
-    </StHeader>
+    <ModalOpenTrigger>
+    <ModalBackground />
+  </ModalOpenTrigger>
+  <StContainer>
+    <StSlideContainer>
+      {
+      images.map((image, index) => (
+        <StSlide key={index} src={image} onClick={onClickDetail} />
+      ))
+      }
+      {
+        profile.map((item)=> {
+          <div key={item.id}>
+            {item.nickname}
+          </div>
+        })
+      }
+    </StSlideContainer>
+    {/* <StSlideContainer>
+    <img key='netflix-profile4.png' src='img/netflix-profile4.png' onClick={onClickDetail} />
+    </StSlideContainer> */}
 
-    <div>
-        <p>관람등급 설정 :</p>
-        <select name="size" id="">
-            <option value="성인">성인</option>
-            <option value="청소년">19세 미만 청소년</option>
-        </select>
-        <StSmfont>이 프로필에서는 모든 관람등급의 콘텐츠가 표시됩니다.</StSmfont>
-        {/* 성인이냐 청소년이냐 -> 성인이면 모든 관람msg 아니면 청소년 관람자 */}
-        <button>수정</button>
-    </div>
-
-    <div>
-        <StMenu>
-            <button>저장</button>
-            <button>취소</button>
-            <button>프로필 삭제</button>
-        </StMenu>
-    </div>
+  </StContainer>
+  <ModalContent>
+    <ProfileDetail />
+    {/* 프로필 추가 모달창 부분 */}
+  </ModalContent>
   </StDiv>
   )
 }
@@ -95,34 +90,33 @@ const StDiv = styled.div`
   font-size: 14px;
 `
 
-const StHeader = styled.div`
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+const StContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  /* width: 80%; */
+  padding: 0px 40px 0px 40px;
 `
 
-const StImage = styled.image`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
-  `
+const StSlideContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transform: translateX(${(props) => props.translateX}%);
+  transition: transform 0.4s ease-in-out;
+  gap: 15px;
+  justify-content: space-between;
+`
 
-  const StMenu = styled.div`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-  li {
-    display: inline-block;
-    margin-right: 10px;
-  }
-  `
-
-const StButton = styled.button`
-  background-color: #333;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
+const StSlide = styled.img`
+  width: 20%;
+  max-width: 200px;
+  margin-bottom: 20px;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
   cursor: pointer;
-  `
+`;
