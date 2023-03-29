@@ -19,11 +19,14 @@ function Detail() {
   // "> Query data cannot be undefined. Please make sure to return a value
   // other than undefined from your query function.
   // Affected query key: ["GET_$$$$$$$$"]"
-
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWR4IjoiYjcwODNhMjktNGU0ZC00MGFjLTkyYmYtZTQ2MjE0ZTVlMTMwIiwiaWF0IjoxNjgwMDUyMTQ3LCJleHAiOjE2ODAwNTU3NDd9.bX9d1Wt4bMY6D3WrOjxlNV3K7IrKXpRALvALJc9SuRY";
   const response0 = useQuery({
     queryKey: ["GET_DETAIL"],
     queryFn: async () => {
-      const { data } = await instance.get(`/movies/detail/1`);
+      const { data } = await instance.get(`/movies/detail/599f5490cca311ed9284025ab6c89464`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       console.log("GET_DETAIL----->", data);
       return data;
     },
