@@ -1,4 +1,4 @@
-//EH profileToken State set
+// EH profileToken State set
 
 // import { createSlice } from "@reduxjs/toolkit";
 // import { cookies } from "../../shared/cookies";

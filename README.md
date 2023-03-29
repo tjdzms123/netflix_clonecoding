@@ -115,10 +115,12 @@ yarn add react-helmet (페이지마다 meta title 지정용)
   - [V] MOVIES CRUD data response check
 
   - [ ] MOVIES Detail Modal
-  - [ ] Home CSS
 
-    - [ ] div level modifing
-    - [ ] react player url changing & overlayed div deleting
+  - Home CSS
+
+    - [x] div level modifing
+      - [V] react player url changing
+      - [x] overlayed div deleting
     - [ ] Card Slider Img Converted Issue
 
   - Post-Profile Token Issue Resolved
