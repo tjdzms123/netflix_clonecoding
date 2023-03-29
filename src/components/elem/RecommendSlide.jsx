@@ -1,29 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { instance } from "../../axios/api";
 import Detail from "../../pages/Detail";
 import { modalOnOff } from "../../redux/modules/modalSlice";
 import { ModalBackground, ModalContent, ModalOpenTrigger } from "./Modal";
 
-const images = [
-  "https://upload.wikimedia.org/wikipedia/ko/thumb/b/b8/1917%EC%98%81%ED%99%94_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg/220px-1917%EC%98%81%ED%99%94_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg",
-  "https://file2.nocutnews.co.kr/newsroom/image/2022/08/27/202208271436351479_0.jpg",
-  "https://www.kukinews.com/data/kuk/image/2022/06/10/kuk202206100269.680x.0.jpg",
-  "https://t1.daumcdn.net/movie/a0aaca4b87c541b11085139bd941da0996a78ec1",
-  "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fx7UCP%2Fbtqy4dZ2ef5%2FUjU276GKXbK5KGQxK7cus1%2Fimg.jpg",
-  "http://image.dongascience.com/Photo/2018/04/04452dc945a759b923317a6921bebd62.jpg",
-  "http://image.dongascience.com/Photo/2018/04/04452dc945a759b923317a6921bebd62.jpg",
-  "http://image.dongascience.com/Photo/2018/04/04452dc945a759b923317a6921bebd62.jpg",
-  "http://image.dongascience.com/Photo/2018/04/04452dc945a759b923317a6921bebd62.jpg",
-  "http://image.dongascience.com/Photo/2018/04/04452dc945a759b923317a6921bebd62.jpg",
-];
-
-const ImageSlider = ({ movies }) => {
-  console.log(movies);
+const RecommendSlider = ({ movies }) => {
   const dispatch = useDispatch();
-
+  console.log(movies);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const [isHovering, setIsHovering] = useState(false);
@@ -34,32 +18,31 @@ const ImageSlider = ({ movies }) => {
 
   const handlePrevClick = () => {
     setCurrentSlide((currentSlide) =>
-      currentSlide === 0 ? images.length - 1 : currentSlide - 1
+      currentSlide === 0 ? movies.length - 1 : currentSlide - 1
     );
   };
 
   const handleNextClick = () => {
-    setCurrentSlide((currentSlide) => (currentSlide + 1) % images.length);
+    setCurrentSlide((currentSlide) => (currentSlide + 1) % movies.length);
   };
 
   const onClickThum = (index) => {
     dispatch(modalOnOff(modalState));
     setMovieId(index);
-    console.log(movieId);
   };
 
   return (
     <>
       <StSliderHeader>
-        <StMoviecategory>영화 장르 이름</StMoviecategory>
+        <StMoviecategory>추천 콘텐츠</StMoviecategory>
         <StIndicatorContainer>
-          {isHovering
-            ? images.map((image, index) => {
+          {/* {isHovering
+            ? movies?.map((movie, index) => {
                 return (
                   <Indicator key={index} active={index === currentSlide} />
                 );
               })
-            : null}
+            : null} */}
         </StIndicatorContainer>
       </StSliderHeader>
       <ModalOpenTrigger>
@@ -74,11 +57,11 @@ const ImageSlider = ({ movies }) => {
           &lt;
         </StArrow>
         <StSlideContainer translateX={-currentSlide * 100}>
-          {images.map((image, index) => (
+          {movies?.map((movie) => (
             <StSlideThum
-              key={index}
-              src={image}
-              onClick={() => onClickThum(index)}
+              key={movie.contentIdx}
+              src={movie.videoThumUrl}
+              onClick={() => onClickThum(movie.contentIdx)}
             />
           ))}
         </StSlideContainer>
@@ -98,7 +81,7 @@ const ImageSlider = ({ movies }) => {
   );
 };
 
-export default ImageSlider;
+export default RecommendSlider;
 
 const StSliderHeader = styled.div`
   display: flex;
@@ -113,10 +96,9 @@ const StContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: center; */
   overflow-x: hidden;
-  /* width: 80%; */
-  /* padding: 0px 40px 0px 40px; */
+  width: 95%;
+  /* padding: 0px 20px 0px 20px; */
 `;
 
 const StSlideContainer = styled.div`
@@ -127,31 +109,26 @@ const StSlideContainer = styled.div`
   /* flex-wrap: wrap; */
   transform: translateX(${(props) => props.translateX}%);
   transition: transform 0.4s ease-in-out;
-  gap: 15px;
+  gap: 20px;
 `;
 
 const StSlideThum = styled.img`
-  width: 30%;
+  width: 100%;
   max-width: 200px;
-  margin-bottom: 20px;
   height: 100%;
   max-height: 150px;
-  object-fit: cover;
+  margin-bottom: 20px;
+  object-fit: fill;
   border-radius: 5px;
   position: relative;
   z-index: 0;
   cursor: pointer;
-  flex: 0 0 calc(20% - 20px); /* 5개씩 보이도록 크기 지정 */
-  margin: 10px;
+  flex: 0 0 calc(20% - 20px);
+  // 5개씩 보이도록 크기 지정
 
   @media screen and (max-width: 768px) {
     /* 뷰포트가 768px 이하인 경우 3개씩 보이도록 크기 조정 */
     flex: 0 0 calc(33.33% - 20px);
-  }
-
-  @media screen and (max-width: 480px) {
-    /* 뷰포트가 480px 이하인 경우 2개씩 보이도록 크기 조정 */
-    /* flex: ; */
   }
 `;
 
