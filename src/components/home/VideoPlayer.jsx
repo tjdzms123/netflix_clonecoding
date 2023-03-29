@@ -59,8 +59,10 @@ function VideoPlayer() {
 }
 
 const videoUrls = [
-  "https://youtu.be/gCpt-eiYoDM",
-  "https://youtu.be/TQzv00NjFJg",
+  // "https://youtu.be/gCpt-eiYoDM",
+
+  // "https://youtu.be/TQzv00NjFJg",
+  "http://52.78.166.176:3000/uploads/homemovie.mp4",
 ];
 
 const VideoDesc = styled.div`

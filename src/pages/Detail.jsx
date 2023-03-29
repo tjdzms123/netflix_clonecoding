@@ -23,7 +23,7 @@ function Detail() {
   // Affected query key: ["GET_$$$$$$$$"]"
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWR4IjoiYjcwODNhMjktNGU0ZC00MGFjLTkyYmYtZTQ2MjE0ZTVlMTMwIiwiaWF0IjoxNjgwMDUyMTQ3LCJleHAiOjE2ODAwNTU3NDd9.bX9d1Wt4bMY6D3WrOjxlNV3K7IrKXpRALvALJc9SuRY";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWR4IjoiYjcwODNhMjktNGU0ZC00MGFjLTkyYmYtZTQ2MjE0ZTVlMTMwIiwiaWF0IjoxNjgwMDY2NjkyLCJleHAiOjE2ODAzOTA2OTJ9.dL5d2xT1W-Wtsa_oZrcNUTz-u6p_748kd26tMlKQBCs";
 
   const response0 = useQuery({
     queryKey: ["GET_DETAIL"],
@@ -53,8 +53,8 @@ function Detail() {
           },
         }
       );
-      console.log("GET_CATEGORY----->", data.category);
-      return data.category;
+      console.log("GET_CATEGORY----->", data);
+      return data.genre;
     },
   });
 
@@ -67,7 +67,7 @@ function Detail() {
         },
       });
       console.log("GET_ALLMOVIES----->", data.movies);
-      return data.movies;
+      return data.allVideos;
     },
   });
 
