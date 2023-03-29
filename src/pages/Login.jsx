@@ -111,6 +111,9 @@ const Styled = styled.div`
   color: gray;
   line-height: 20px;
   font-size: 14px;
+
+  position: relative;
+  top: 12vh;
 `;
 
 //배경 이미지
