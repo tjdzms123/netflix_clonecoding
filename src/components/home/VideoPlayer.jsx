@@ -35,23 +35,23 @@ function VideoPlayer() {
             transition: "opacity 1.3s ease-in-out",
           }}
         >
-          <div>영상 제목</div>
+          <div>《스위트 투스: 사슴뿔을 가진 소년》 시즌 2</div>
           <div>소개글</div>
           <div>버튼 | 버튼</div>
         </VideoDesc>
-        <div
+        {/* <div
           style={{
             backgroundColor: "black",
             position: "relative",
-            top: "-48vh", //외부 player UI cover
+            top: "-40vh", //외부 player UI cover
             // top: "-48%", //외부 player UI cover
-            fontSize: "30vh",
+            fontSize: "5vh",
             // fontSize: "22vh",
             color: "rgb(0,0,0,0)",
           }}
         >
           UI
-        </div>
+        </div> */}
       </VideoDescWrapper>
       {/* <OverlayVideo /> */}
     </VideoCont>
@@ -59,8 +59,10 @@ function VideoPlayer() {
 }
 
 const videoUrls = [
-  "https://youtu.be/gCpt-eiYoDM",
-  "https://youtu.be/TQzv00NjFJg",
+  // "https://youtu.be/gCpt-eiYoDM",
+
+  // "https://youtu.be/TQzv00NjFJg",
+  "http://52.78.166.176:3000/uploads/homemovie.mp4",
 ];
 
 const VideoDesc = styled.div`
@@ -70,7 +72,7 @@ const VideoDesc = styled.div`
 `;
 const VideoDescWrapper = styled.div`
   position: relative;
-  bottom: 100vh; //120whole / 100without UI
+  bottom: 120vh; //120whole / 100without UI
   left: 0;
   width: 100%;
   height: 10vh;

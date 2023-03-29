@@ -1,17 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import React, {useState} from "react";
 import styled from "styled-components";
-import { instance } from "../axios/api";
-import { ESInput, useInput } from "../hook/useInput";
-import { StSmfont } from "./Signup/Singstyled";
+import { instance } from "../../axios/api";
+import { ESInput, useInput } from "../../hook/useInput";
+import { StSmfont } from ".././Signup/Singstyled";
 import { useMutation } from "@tanstack/react-query"
 import { useParams } from "react-router-dom";
+import { cookies } from "../../shared/cookies";
+import { useCookies } from 'react-cookie'
 
 function ProfileDetail() {
 
   const [profileId, setProfiledId] = useState('');
   const [newProfile, newProfileHandler, setNewProfile] = useInput("");
   const token = decodeURI(document.cookie).replace("token=Bearer ", "");
+
 
   //전체조회
   const {data1} = useQuery({
@@ -30,45 +33,41 @@ function ProfileDetail() {
     },
   });
 
-
-  console.log(data1);
-  console.log({data1});
-// console.log(data1);
   //프로필 개별조회
-
   const { data2 } = useQuery({    
     querykey: ["GET_INDIV_PROFILE"],
     queryFn: async () => {
-      const { data2 } = await instance.get(`/profile/:profileIdx`,
+      //   const { data2 } = await instance.get(`/profile/:profileIdx`
+      // ,
+      const { data2 } = await instance.get(`/profile/e494d2a3-b037-464e-ab74-ea354c6d3e39/login`
+      ,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
       return data2;
     },
   });
 
+console.log('데이터1',data1);
 
-  // console.log("0번 프로필 조회", {data}.allprofiles);
-  
-//   const profile1 = async() => {
-//     await instance.get(`/profile`,
-//   {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   }).allProfiles[0] 
-//   console.log("profile check", profile1)
-// }
+//로그인할때만 로그인 /login
+// console.log("0번 프로필 조회", {data}.allprofiles);
 
+  const profile1 = async() => {
+    await instance.get(`/profile`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }).allProfiles[0] 
+  console.log("profile check", profile1)
+};
 
-  //추가
+//추가
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: async (payload) => {
-      // console.log("mutation Working");
-      // console.log(payload);
       const { data } = await instance.post(`/profile`,
       {profileName: payload}, //request body
       {
@@ -76,9 +75,27 @@ function ProfileDetail() {
                   Authorization: `Bearer ${token}`,
                 },
               })
-              return data;
-  }})
+        return data;
+  }});
+  // cookies.set("profileToken", data.headers.authorization, { path: "/" });
 
+// const { mutate, isLoading, isSuccess } = useMutation({
+//   mutationFn: async (payload) => {
+//     const { data } = await instance.post(
+//       `/profile`,
+//       { profileName: payload },
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       }
+//     );
+    
+//     const [cookies, setCookie] = useCookies(['profileToken']);
+//     setCookie('profileToken', data, { path: '/' }); // 쿠키에 token 저장
+//     return data;
+//   }
+// });
 
   const submitButtonHandler = (e) => {
     e.preventDefault();
@@ -93,7 +110,7 @@ function ProfileDetail() {
     <StDetailBox>
       <StDiv>
         <StHeader>
-          <StImage key="netflix-profile1.png" src="img/netflix-profile1.png" />
+          <StImage key="netflix-profile2.png" src="img/netflix-profile2.png" />
           <form onSubmit={submitButtonHandler}>
           <ESInput
             type="text"
@@ -115,13 +132,13 @@ function ProfileDetail() {
             이 프로필에서는 모든 관람등급의 콘텐츠가 표시됩니다.
           </StSmfont>
           {/* 성인이냐 청소년이냐 -> 성인이면 모든 관람msg 아니면 청소년 관람자 */}
-          <StButton>수정</StButton>
         </div>
 
         <div>
           <StMenu>
-            <StButton onClick={()=>mutate()}>저장</StButton>
-            <StButton>취소</StButton>
+            <StButton onClick={()=>mutate()}
+            >저장</StButton>
+            <StButton>수정</StButton>
             <StButton>프로필 삭제</StButton>
           </StMenu>
         </div>
@@ -134,19 +151,17 @@ export default ProfileDetail;
 
 const StDetailBox = styled.div`
   color: white;
+  position: relative;
+  top: -30vh;
 `;
 
 const StDiv = styled.div`
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
-
   height: 50vh;
-  width: 300px; /* 로그인 폼의 너비 */
-  margin: 0 auto; /* 로그인 폼을 중앙에 위치시키기 위한 마진 */
-  border-radius: 5px; /* 로그인 폼의 모서리를 둥글게 만듭니다 */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 로그인 폼 주위에 그림자를 만듭니다 */
+  width: 300px; 
+  margin: 0 auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -162,17 +177,24 @@ const StHeader = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  border: 1px solid yellow;
+
 `;
 
 const StImage = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 70px;
+  height: 70px;
+  margin-right: 10px;
+  border: 1px solid yellowgreen;
+
 `;
 
 const StMenu = styled.div`
   list-style: none;
   padding: 0;
   margin: 0;
+  border: 1px solid #fff;
+
 
   li {
     display: inline-block;
@@ -184,6 +206,9 @@ const StButton = styled.button`
   background-color: #333;
   color: #fff;
   padding: 10px 20px;
+  margin: 5px;
   border-radius: 5px;
   cursor: pointer;
+  gap: 10px;
+  border: 1px solid #66a2b3;
 `;
