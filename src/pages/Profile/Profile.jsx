@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { __getprofile } from "../redux/modules/ProfileSlice";
-import Button from "../components/elem/Button";
-import { modalOnOff } from "../redux/modules/modalSlice";
+import { __getprofile } from "../../redux/modules/ProfileSlice";
+import Button from "../../components/elem/Button";
+import { modalOnOff } from "../../redux/modules/modalSlice";
 import {
   ModalBackground,
   ModalContent,
   ModalOpenTrigger,
-} from "../components/elem/Modal";
+} from "../../components/elem/Modal";
 import ProfileDetail from "./ProfileDetail";
-import { instance } from "../axios/api";
+import ProfileDetail2 from "./ProfileDetail2";
+import { instance } from "../../axios/api";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import { HiOutlinePlus } from "react-icons/hi";
+
 
 
 function Profile() {
   const  allProfiles  = useSelector((state) => state.allProfiles);
+  console.log(allProfiles);
 
   const dispatch = useDispatch();
+  const navi = useNavigate();
 
   //모달
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
   const modalState = useSelector((state) => state.modalSlice.modal);
 
   const images = [
@@ -34,6 +38,11 @@ function Profile() {
   const onClickDetail = () => {
     dispatch(modalOnOff(modalState));
   };
+
+  const onClickBtn = () => {
+    dispatch(modalOnOff(modalState));
+    navi('/')
+  }
 
   const token = decodeURI(document.cookie).replace("token=Bearer ", "");
   console.log("Profile.jsx token value---->", token);
@@ -79,6 +88,7 @@ function Profile() {
 //   });
 //  console.log(response);
 
+
   return (
     <StDiv>
       <p>Netfilx를 시청할 프로필을 선택하세요.</p>
@@ -86,25 +96,30 @@ function Profile() {
       <ModalOpenTrigger>
         <ModalBackground />
       </ModalOpenTrigger>
+
       <StContainer>
         <StSlideContainer>
-          {
-          images.map((image, index) => (
-            <StSlide key={index} src={image} onClick={onClickDetail} />
-          ))
-          }
-          {
-          allProfiles?.map((item) => {
-            <div key={item.id}>{item.nickname}</div>;
-          })
-          }
+          {/* <StSlide src='img/netflix-profile4.png' onClick={onClickDetail} /> */}
+        
+        <HiOutlinePlus onClick={onClickDetail}
+        style={{
+          width:'80px',
+          height:'80px'
+        }}/>
+
         </StSlideContainer>
-        {/* <StSlideContainer>
-    <img key='netflix-profile4.png' src='img/netflix-profile4.png' onClick={onClickDetail} />
-    </StSlideContainer> */}
+        <StSlide src='img/netflix-profile2.png' onClick={onClickBtn} 
+        style={{
+          width:'80px',
+          height:'80px'
+        }}/>
+
       </StContainer>
-      <ModalContent>
-        <ProfileDetail />
+      
+      <ModalContent backgroundColor='transparent'>
+      <ProfileDetail />
+
+        {/* <ProfileDetail2 /> */}
         {/* 프로필 추가 모달창 부분 */}
       </ModalContent>
     </StDiv>
@@ -134,33 +149,37 @@ const StDiv = styled.div`
   color: gray;
   line-height: 20px;
   font-size: 14px;
+
+  position: relative;
+  top: 15vh;
 `;
 
 const StContainer = styled.div`
+  width: 200px;
+  height: 200px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   /* width: 80%; */
   padding: 0px 40px 0px 40px;
 `;
 
 const StSlideContainer = styled.div`
+  width: 200px;
+  height: 200px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  transform: translateX(${(props) => props.translateX}%);
-  transition: transform 0.4s ease-in-out;
+  /* transform: translateX(${(props) => props.translateX}%);
+  transition: transform 0.4s ease-in-out; */
   gap: 15px;
   justify-content: space-between;
 `;
 
 const StSlide = styled.img`
-  width: 20%;
-  max-width: 200px;
   margin-bottom: 20px;
-  height: 100%;
   object-fit: cover;
   position: relative;
   z-index: 0;

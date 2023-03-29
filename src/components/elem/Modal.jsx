@@ -33,15 +33,15 @@ const Background = styled.div`
   z-index: 4;
 `;
 
-export const ModalContent = ({ children }) => {
+export const ModalContent = ({ children, backgroundColor  }) => {
   const modalState = useSelector((state) => state.modalSlice.modal);
-  return modalState && <Body>{children}</Body>;
+  return modalState && <Body backgroundColor={backgroundColor}>{children}</Body>;
 };
 
 const Body = styled.div`
   width: 420px;
   position: absolute;
-  background-color: rgb(0, 0, 0);
+  background-color: ${(props) => props.backgroundColor || 'rgb(0, 0, 0)'};
   top: 3%;
   left: 50%;
   right: 50%;
@@ -52,6 +52,7 @@ const Body = styled.div`
   box-sizing: border-box;
   z-index: 5;
 `;
+
 export const ModalCloseBtn = ({ children }) => {
   const dispatch = useDispatch();
   const modalState = useSelector((state) => state.modalSlice.modal);
