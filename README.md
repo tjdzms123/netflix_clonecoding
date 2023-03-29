@@ -53,7 +53,7 @@ yarn add react-helmet (페이지마다 meta title 지정용)
 
 # EH > home > components
 
-- 작업 중 03/27 10:10-
+- 03/27 10:10-
 
 - [ ] Home.jsx
 
@@ -77,6 +77,8 @@ yarn add react-helmet (페이지마다 meta title 지정용)
   - [ ] Movies.jsx
     - [V] CRUD GET REQ CHECK with TANSTACK
 
+# EH > Router and Guard handling
+
 - 03/28 09:40-
 
 - [V] Hooking Guard
@@ -94,3 +96,31 @@ yarn add react-helmet (페이지마다 meta title 지정용)
       - -> Router.js 25ln -> isLogin Global State
 
 - [V] src > utils > createQueryKey.js
+
+# COMMON ISSUE > Profile Token Issue
+
+- 03/28 15:00-27:30
+
+- [ ] Profile Token Issue1 15:00-24:00
+  - (...)
+  - Profile Token 수동 발급으로 임시 대처
+    - [V] Profile Token Issue2 (수동 발급 토큰으로 movies CRUD 처리 과정 중 발생) 24:00-03:00
+      - [V] ISO-8859-1 EM Dash issue (request에 담을 수 없음)
+
+# EH
+
+- 03/29 10:00
+
+  - [V] 프로필 토큰 재발급
+  - [V] MOVIES CRUD data response check
+
+  - [ ] MOVIES Detail Modal
+  - [ ] Home CSS
+
+    - [ ] div level modifing
+    - [ ] react player url changing & overlayed div deleting
+    - [ ] Card Slider Img Converted Issue
+
+  - Post-Profile Token Issue Resolved
+    - [ ] Update Routering with Profile Token State
+      - [V] Preset -12:00

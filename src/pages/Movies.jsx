@@ -8,20 +8,23 @@ import { instance } from "../axios/api";
 
 function Movies() {
   FalseGuard();
-  const { data } = useQuery({
-    queryKey: ["GET_MOVIES"],
-    queryFn: async () => {
-      const { data } = await instance.get(`/movies`);
-      return data.movies;
-    },
-  });
+  // const { data } = useQuery({
+  //   queryKey: ["GET_MOVIES"],
+  //   queryFn: async () => {
+  //     const { data } = await instance.get(`/movies`);
+  //     return data.movies;
+  //   },
+  // });
+
   return (
     <>
       <Helmet>
         <title>Netflix</title>
       </Helmet>
       <StHeader />
-      <ImageSlider movies={data} />
+      {/* <ImageSlider movies={data} /> */}
+      <ImageSlider />
+      {/* for test */}
     </>
   );
 }
