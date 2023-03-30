@@ -24,62 +24,62 @@ function Detail() {
   //   },
   // });
   // * =============== TEST ================== *
-//   // "> Query data cannot be undefined. Please make sure to return a value
-//   // other than undefined from your query function.
-//   // Affected query key: ["GET_$$$$$$$$"]"
-//   const token =
-//     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWR4IjoiYjcwODNhMjktNGU0ZC00MGFjLTkyYmYtZTQ2MjE0ZTVlMTMwIiwiaWF0IjoxNjgwMDUyMTQ3LCJleHAiOjE2ODAwNTU3NDd9.bX9d1Wt4bMY6D3WrOjxlNV3K7IrKXpRALvALJc9SuRY";
-//   const response0 = useQuery({
-//     queryKey: ["GET_DETAIL"],
-//     queryFn: async () => {
-//       const { data } = await instance.get(`/movies/detail/599f5490cca311ed9284025ab6c89464`, {
-//         headers: { Authorization: `Bearer ${token}` },
-//       });
-//       console.log("GET_DETAIL----->", data);
+  //   // "> Query data cannot be undefined. Please make sure to return a value
+  //   // other than undefined from your query function.
+  //   // Affected query key: ["GET_$$$$$$$$"]"
+  //   const token =
+  //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWR4IjoiYjcwODNhMjktNGU0ZC00MGFjLTkyYmYtZTQ2MjE0ZTVlMTMwIiwiaWF0IjoxNjgwMDUyMTQ3LCJleHAiOjE2ODAwNTU3NDd9.bX9d1Wt4bMY6D3WrOjxlNV3K7IrKXpRALvALJc9SuRY";
+  //   const response0 = useQuery({
+  //     queryKey: ["GET_DETAIL"],
+  //     queryFn: async () => {
+  //       const { data } = await instance.get(`/movies/detail/599f5490cca311ed9284025ab6c89464`, {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       });
+  //       console.log("GET_DETAIL----->", data);
 
-//   // * ============== ALLMOVIES =============== *
-//   const allMovies = useQuery({
-//     queryKey: ["GET_ALLMOVIES"],
-//     queryFn: async () => {
-//       const { data } = await instance.get(`/movies`, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       });
-//       return data.allVideos;
-//     },
-//   });
-//   const contentIdx = allMovies.data[2].contentIdx;
-//   // console.log(allMovies.data[2]);
-//   console.log(contentIdx);
+  //   // * ============== ALLMOVIES =============== *
+  //   const allMovies = useQuery({
+  //     queryKey: ["GET_ALLMOVIES"],
+  //     queryFn: async () => {
+  //       const { data } = await instance.get(`/movies`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+  //       return data.allVideos;
+  //     },
+  //   });
+  //   const contentIdx = allMovies.data[2].contentIdx;
+  //   // console.log(allMovies.data[2]);
+  //   console.log(contentIdx);
 
-//   // * ============== ALLMOVIES =============== *
+  //   // * ============== ALLMOVIES =============== *
 
-//   // * ============== DETAIL_MOVIES =============== *
-//   const response = useQuery({
-//     queryKey: ["GET_DETAIL"],
-//     queryFn: async () => {
-//       const { data } = await instance.get(
-//         // `/movies/detail/0ba0172ccca311ed9284025ab6c89464`,
-//         `/movies/detail/${contentIdx}`,
+  //   // * ============== DETAIL_MOVIES =============== *
+  //   const response = useQuery({
+  //     queryKey: ["GET_DETAIL"],
+  //     queryFn: async () => {
+  //       const { data } = await instance.get(
+  //         // `/movies/detail/0ba0172ccca311ed9284025ab6c89464`,
+  //         `/movies/detail/${contentIdx}`,
 
-//         {
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         }
-//       );
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         }
+  //       );
   //     return data;
   //   },
   // });
-  const detailVideo = response.data.detailVideo.Video;
-  console.log("detailVideo---------->", detailVideo);
+  // const detailVideo = response.data.detailVideo.Video;
+  // console.log("detailVideo---------->", detailVideo);
 
-  const detailDesc = detailVideo.desc;
-  const detailTitie = detailVideo.name;
-  const detailPlaytime = detailVideo.playtime;
-  const detailUrl = detailVideo.videoUrl;
-  console.log(detailTitie);
+  // const detailDesc = detailVideo.desc;
+  // const detailTitie = detailVideo.name;
+  // const detailPlaytime = detailVideo.playtime;
+  // const detailUrl = detailVideo.videoUrl;
+  // console.log(detailTitie);
 
   // * ============== DETAIL_MOVIES =============== *
 
@@ -87,7 +87,7 @@ function Detail() {
     // ============== Detail Modal Temp ==============
 
     <StDetailBox>
-      <StDetailVideoBox>
+      {/* <StDetailVideoBox>
         <ReactPlayer
           className="react-player"
           url={detailUrl}
@@ -102,7 +102,7 @@ function Detail() {
         <div>{detailTitie}</div>
         <div>{detailPlaytime}</div>
         <div>{detailDesc}</div>
-      </StDetailDescBox>
+      </StDetailDescBox> */}
     </StDetailBox>
     // ============== Detail Modal Temp ==============
   );

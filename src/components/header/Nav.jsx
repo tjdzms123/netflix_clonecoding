@@ -29,9 +29,6 @@ function Nav() {
           <HeaderLi1>
             <HeaderLink to="/movies">Movies</HeaderLink>
           </HeaderLi1>
-          <HeaderLi1>
-            <HeaderLink to="/test">Test</HeaderLink>
-          </HeaderLi1>
         </HeaderUl>
       </Row>
       <Row style={{ paddingRight: "27.441px", color: "white" }}>
