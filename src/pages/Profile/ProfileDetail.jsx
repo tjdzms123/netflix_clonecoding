@@ -7,7 +7,7 @@ import { StSmfont } from ".././Signup/Singstyled";
 import { useMutation } from "@tanstack/react-query"
 import { useParams } from "react-router-dom";
 import { cookies } from "../../shared/cookies";
-import { useCookies } from 'react-cookie'
+// import { useCookies } from 'react-cookie'
 
 function ProfileDetail() {
 

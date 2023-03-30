@@ -40,7 +40,7 @@ function Profile() {
   };
 
   const onClickBtn = () => {
-    dispatch(modalOnOff(modalState));
+    // dispatch(modalOnOff(modalState));
     navi('/')
   }
 
