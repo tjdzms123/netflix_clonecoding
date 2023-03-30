@@ -95,7 +95,7 @@ function Detail() {
     // ============== Detail Modal Temp ==============
 
     <StDetailBox>
-      {/* <StDetailVideoBox>
+      <StDetailVideoBox>
         <ReactPlayer
           className="react-player"
           url={detailUrl}

@@ -51,13 +51,7 @@ return (
           height:'80px',
           cursor: 'pointer'
         }}/>
-          <HiOutlinePlus
-            onClick={onClickDetail}
-            style={{
-              width: "80px",
-              height: "80px",
-            }}
-          />
+
         </StSlideContainer>
         <StSlide src='img/netflix-profile2.png' onClick={onClickBtn} 
         style={{
