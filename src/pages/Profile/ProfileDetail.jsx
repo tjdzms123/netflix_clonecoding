@@ -4,13 +4,12 @@ import styled from "styled-components";
 import { instance } from "../../axios/api";
 import { ESInput, useInput } from "../../hook/useInput";
 import { StSmfont } from ".././Signup/Singstyled";
-import { useMutation } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query"
 import { cookies } from "../../shared/cookies";
 // import { useCookies } from 'react-cookie'
 
 function ProfileDetail() {
-  const [profileId, setProfiledId] = useState("");
+
   const [newProfile, newProfileHandler, setNewProfile] = useInput("");
   const token = decodeURI(document.cookie).replace("token=Bearer ", "");
 
@@ -49,9 +48,6 @@ function ProfileDetail() {
   });
 
   console.log("데이터1", data1);
-
-  //로그인할때만 로그인 /login
-  // console.log("0번 프로필 조회", {data}.allprofiles);
 
   const profile1 = async () => {
     await instance.get(`/profile`, {
@@ -103,8 +99,6 @@ function ProfileDetail() {
     mutate(newProfile);
   };
 
-  // if (!data || isLoading) return <div>로딩중 ..</div>
-  // if (isError) return <div>에러 !!!</div>
 
   return (
     <StDetailBox>
@@ -131,7 +125,6 @@ function ProfileDetail() {
           <StSmfont>
             이 프로필에서는 모든 관람등급의 콘텐츠가 표시됩니다.
           </StSmfont>
-          {/* 성인이냐 청소년이냐 -> 성인이면 모든 관람msg 아니면 청소년 관람자 */}
         </div>
 
         <div>
@@ -148,7 +141,7 @@ function ProfileDetail() {
 
 export default ProfileDetail;
 
-const StDetailBox = styled.div`
+const StDetailBox = styled.form`
   color: white;
   position: relative;
   top: -30vh;
@@ -176,21 +169,18 @@ const StHeader = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  border: 1px solid yellow;
 `;
 
 const StImage = styled.img`
   width: 70px;
   height: 70px;
   margin-right: 10px;
-  border: 1px solid yellowgreen;
 `;
 
 const StMenu = styled.div`
   list-style: none;
   padding: 0;
   margin: 0;
-  border: 1px solid #fff;
 
   li {
     display: inline-block;
@@ -206,5 +196,4 @@ const StButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   gap: 10px;
-  border: 1px solid #66a2b3;
 `;

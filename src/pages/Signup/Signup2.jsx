@@ -2,10 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { StButton, StFont, StSmfont } from "./Singstyled";
-// =============== EH =================
 import { Helmet } from "react-helmet";
 import TrueGuard from "../../hook/guard/TrueGuard";
-// =============== EH =================
 
 function Signup2() {
   const navi = useNavigate();
@@ -20,7 +18,6 @@ function Signup2() {
         <title>Login - Netflix</title>
       </Helmet>
       <StDiv>
-        {/* 아이콘 */}
         <StFont>
           <StSmfont>2/3단계</StSmfont>
           <p>원하는 멤버십을 선택하세요.</p>
@@ -38,7 +35,6 @@ export default Signup2;
 
 //전체
 const StDiv = styled.div`
-  /* background-color: antiquewhite; */
   height: 100vh;
   display: flex;
   flex-direction: column;

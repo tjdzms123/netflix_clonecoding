@@ -8,7 +8,7 @@ import { ModalContent, ModalOpenTrigger } from "./Modal";
 
 const RecommendSlider = ({ movies }) => {
   const dispatch = useDispatch();
-  console.log(movies);
+
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const [isHovering, setIsHovering] = useState(false);

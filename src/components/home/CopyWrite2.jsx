@@ -14,14 +14,22 @@ function CopyWrite2() {
 
   // * ============= Cards Img Unvisible Issue ============== *
 
+  // const cards = [
+  //   { id: 1, backgroundColor: "#ff7f502b", imageUrl: "/img/CopyImg1.jpeg" },
+  //   { id: 2, backgroundColor: "#4169e1" },
+  //   { id: 3, backgroundColor: "#f08080" },
+  //   { id: 4, backgroundColor: "#87cefa" },
+  //   { id: 5, backgroundColor: "#da70d6" },
+  //   { id: 6, backgroundColor: "#1d252a" },
+  //   { id: 7, backgroundColor: "#545667" },
+  // ];
+
+  // 은선
   const cards = [
-    { id: 1, backgroundColor: "#ff7f502b", imageUrl: "/img/CopyImg1.jpeg" },
-    { id: 2, backgroundColor: "#4169e1" },
-    { id: 3, backgroundColor: "#f08080" },
-    { id: 4, backgroundColor: "#87cefa" },
-    { id: 5, backgroundColor: "#da70d6" },
-    { id: 6, backgroundColor: "#1d252a" },
-    { id: 7, backgroundColor: "#545667" },
+    { id: 1, backgroundImage: 'url(/img/photo1.jpg)' },
+    { id: 2, backgroundImage: 'url(/img/photo2.jpg)' },
+    { id: 3, backgroundImage: 'url(/img/photo3.jpg)' },
+    { id: 4, backgroundImage: 'url(/img/photo4.jpg)' },
   ];
   // * ============= for Test ============== *
   // [
@@ -54,6 +62,7 @@ function CopyWrite2() {
             <Card
               key={card.id}
               backgroundColor={card.backgroundColor}
+              backgroundImage={card.backgroundImage}
               isActive={index === currentCardIndex}
             />
           ))}
@@ -79,6 +88,20 @@ const CopyWrapper = styled.div`
   justify-content: center;
 `;
 
+// const Card = styled.div`
+//   position: absolute;
+//   top: 0;
+//   width: 100%;
+//   height: 100%;
+//   border-radius: 10px;
+//   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+//   background-color: ${(props) => props.backgroundColor};
+//   background-image: ${(props) => props.backgroundImage};
+//   transition: left 0.3s ease-in-out;
+//   left: ${(props) => (props.isActive ? "0" : "-100%")};
+//   z-index: ${(props) => (props.isActive ? 1 : 0)};
+// `;
+
 const Card = styled.div`
   position: absolute;
   top: 0;
@@ -86,7 +109,10 @@ const Card = styled.div`
   height: 100%;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-  background-color: ${(props) => props.backgroundColor};
+  background-image: ${(props) => props.backgroundImage};
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   transition: left 0.3s ease-in-out;
   left: ${(props) => (props.isActive ? "0" : "-100%")};
   z-index: ${(props) => (props.isActive ? 1 : 0)};

@@ -2,10 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { StButton, StFont, StSmfont } from "./Singstyled";
-// =============== EH =================
 import { Helmet } from "react-helmet";
 import TrueGuard from "../../hook/guard/TrueGuard";
-// =============== EH =================
 
 function Signup3() {
   TrueGuard();
@@ -17,11 +15,9 @@ function Signup3() {
   };
   return (
     <>
-      //========= EH =============
       <Helmet>
         <title>Login - Netflix</title>
       </Helmet>
-      //========= EH =============
       <StDiv>
         <StFont>
           <StTable>
@@ -92,7 +88,6 @@ export default Signup3;
 
 //전체
 const StDiv = styled.div`
-  /* background-color: antiquewhite; */
   height: 100vh;
   display: flex;
   flex-direction: column;

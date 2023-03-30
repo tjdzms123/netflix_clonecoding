@@ -64,7 +64,6 @@ function Detail() {
       const { data } = await instance.get(
         // `/movies/detail/0ba0172ccca311ed9284025ab6c89464`,
         `/movies/detail/${contentIdx}`,
-
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -96,7 +95,7 @@ function Detail() {
     // ============== Detail Modal Temp ==============
 
     <StDetailBox>
-      <StDetailVideoBox>
+      {/* <StDetailVideoBox>
         <ReactPlayer
           className="react-player"
           url={detailUrl}
