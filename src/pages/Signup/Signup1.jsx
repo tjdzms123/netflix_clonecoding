@@ -73,14 +73,6 @@ function Signup() {
             maxLength="20"
             required
           />
-          {/* <ESInput
-        value={user.nick}
-        onChange={chgInputHandler}
-        name="nick"
-        placeholder="닉네임을 추가하세요"
-        maxLength='10'
-        required
-        /> */}
           <CheckboxLabels />
           <br />
           <StButton>동의하고 계속</StButton>

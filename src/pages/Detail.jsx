@@ -72,14 +72,14 @@ function Detail() {
   //     return data;
   //   },
   // });
-  const detailVideo = response.data.detailVideo.Video;
-  console.log("detailVideo---------->", detailVideo);
+  // const detailVideo = response.data.detailVideo.Video;
+  // console.log("detailVideo---------->", detailVideo);
 
-  const detailDesc = detailVideo.desc;
-  const detailTitie = detailVideo.name;
-  const detailPlaytime = detailVideo.playtime;
-  const detailUrl = detailVideo.videoUrl;
-  console.log(detailTitie);
+  // const detailDesc = detailVideo.desc;
+  // const detailTitie = detailVideo.name;
+  // const detailPlaytime = detailVideo.playtime;
+  // const detailUrl = detailVideo.videoUrl;
+  // console.log(detailTitie);
 
   // * ============== DETAIL_MOVIES =============== *
 
@@ -87,7 +87,7 @@ function Detail() {
     // ============== Detail Modal Temp ==============
 
     <StDetailBox>
-      <StDetailVideoBox>
+      {/* <StDetailVideoBox>
         <ReactPlayer
           className="react-player"
           url={detailUrl}
@@ -102,7 +102,7 @@ function Detail() {
         <div>{detailTitie}</div>
         <div>{detailPlaytime}</div>
         <div>{detailDesc}</div>
-      </StDetailDescBox>
+      </StDetailDescBox> */}
     </StDetailBox>
     // ============== Detail Modal Temp ==============
   );
