@@ -1,43 +1,25 @@
-import axios from 'axios'
-import { cookies } from '../shared/cookies'
+import axios from "axios";
+import { cookies } from "../shared/cookies";
 
+export const instance = axios.create({
+    baseURL: "http://52.78.166.176:3000",
+});
 
-const instance = axios.create({
-    baseURL:process.env.REACT_APP_SERVER_URL,
-    headers:{
-      "Access-Control-Allow-Origin": "*",
-    },
-    // timeout: 1,
-    // 오류 확인 가능한지 테스트.. 1밀리세컨드.. 내에 응답을 못받으면 에러처리 하도록 돼 있음.
-})
+// instance.interceptors.request.use(
+//     // 요청을 보내기 전 수행되는 함수
+//     function (req) {
+//         const token = cookies.get('token');
+//         // 겟 했을때 토큰이 없으면 요청 그대로 리턴
+//         // if (!token) return req;
 
+//         // 토큰이 있으면 헤더에 넣어서 리턴
+//         req.headers.Authorization = `Bearer ${token}`;
+//         return req;
+//     },
 
-
-instance.interceptors.request.use(
-  // 요청을 보내기 전 수행되는 함수
-  function (config) {
-    const token = cookies.get("token")
-    config.headers["authorization"] = `Bearer ${token}`;
-    return config
-  },
-
-  // 오류 요청을 보내기 전 수행되는 함수
-  function (error) {
-    return Promise.reject(error)
-    // return error 가 아님 !! 꼭 프로미스.리젝트 여야만 함
-  }
-)
-
-instance.interceptors.response.use(
-  // 응답을 내보내기 전 수행되는 함수
-  function (response) {
-    return response
-  },
-
-  // 오류 응답을 내보내기 전 수행되는 함수
-  function (error) {
-    return Promise.reject(error)
-  }
-)
-
-export default instance
+//     // 오류 요청을 보내기 전 수행되는 함수
+//     function (error) {
+//         // console.log('인터셉터 요청 오류');
+//         return Promise.reject(error);
+//     }
+// );

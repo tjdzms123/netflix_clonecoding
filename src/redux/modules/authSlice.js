@@ -1,28 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { createSlice } from "@reduxjs/toolkit";
+import { cookies } from "../../shared/cookies";
 
 const initialState = {
+    isLogin: cookies.get("token") ? true : false,
+};
 
-}
+export const authSlice = createSlice({
+    name: "auth",
+    initialState,
+    reducers: {
+        login(state) {
+            state.isLogin = true;
+        },
+        logout(state) {
+            state.isLogin = false;
+            cookies.remove("token");
+        },
+    },
+});
 
-// ================== thunk ==================
-export const __ = createAsyncThunk('', async (thisUser, thunk) => {
-  try {
-
-  } catch (e) {
-
-  }
-})
-
-const authSlice = createSlice({
-  name: "auth",
-  initialState,
-  reducers: {
-
-  },
-  extraReducers: {},
-})
-export const { } = authSlice.actions
-export default authSlice.reducer
-
+export const isLoginActions = authSlice.actions;
+export default authSlice.reducer;
