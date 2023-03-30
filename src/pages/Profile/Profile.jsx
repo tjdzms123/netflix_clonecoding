@@ -12,10 +12,8 @@ import ProfileDetail from "./ProfileDetail";
 import { useNavigate } from "react-router-dom";
 import { HiOutlinePlus } from "react-icons/hi";
 
-
-
 function Profile() {
-  const  allProfiles  = useSelector((state) => state.allProfiles);
+  const allProfiles = useSelector((state) => state.allProfiles);
   console.log(allProfiles);
 
   const dispatch = useDispatch();
@@ -37,8 +35,7 @@ function Profile() {
   const token = decodeURI(document.cookie).replace("token=Bearer ", "");
   console.log("Profile.jsx token value---->", token);
 
-
-  return (
+return (
     <StDiv>
       <p>Netfilx를 시청할 프로필을 선택하세요.</p>
 
@@ -48,14 +45,19 @@ function Profile() {
 
       <StContainer>
         <StSlideContainer>
-        
         <HiOutlinePlus onClick={onClickDetail}
         style={{
           width:'80px',
           height:'80px',
           cursor: 'pointer'
         }}/>
-
+          <HiOutlinePlus
+            onClick={onClickDetail}
+            style={{
+              width: "80px",
+              height: "80px",
+            }}
+          />
         </StSlideContainer>
         <StSlide src='img/netflix-profile2.png' onClick={onClickBtn} 
         style={{

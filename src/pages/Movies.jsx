@@ -41,7 +41,6 @@ function Movies() {
   });
   // console.log("ACTION", action);
 
-
   const { data: comedy } = useQuery({
     queryKey: ["GET_COMEDY"],
     queryFn: async () => {
@@ -50,11 +49,10 @@ function Movies() {
           Authorization: `Bearer ${token}`,
         },
       });
-      return data.category.videos
+      return data.category.videos;
     },
   });
   // console.log("COMEDY", comedy);
-
 
   const { data: animation } = useQuery({
     queryKey: ["GET_ANIMATION"],
@@ -64,11 +62,11 @@ function Movies() {
           Authorization: `Bearer ${token}`,
         },
       });
-      return data.category.videos
+      return data.category.videos;
     },
   });
   // console.log("ANIMATION", animation);
-  
+
   return (
     <>
       <Helmet>
