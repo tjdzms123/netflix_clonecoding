@@ -6,7 +6,7 @@ import { ESInput, useInput } from "../../hook/useInput";
 import { StSmfont } from ".././Signup/Singstyled";
 import { useMutation } from "@tanstack/react-query"
 import { cookies } from "../../shared/cookies";
-import { useCookies } from 'react-cookie'
+// import { useCookies } from 'react-cookie'
 
 function ProfileDetail() {
 
