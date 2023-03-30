@@ -16,10 +16,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { HiOutlinePlus } from "react-icons/hi";
 
-
-
 function Profile() {
-  const  allProfiles  = useSelector((state) => state.allProfiles);
+  const allProfiles = useSelector((state) => state.allProfiles);
   console.log(allProfiles);
 
   const dispatch = useDispatch();
@@ -40,9 +38,9 @@ function Profile() {
   };
 
   const onClickBtn = () => {
-    dispatch(modalOnOff(modalState));
-    navi('/')
-  }
+    // dispatch(modalOnOff(modalState));
+    navi("/");
+  };
 
   const token = decodeURI(document.cookie).replace("token=Bearer ", "");
   console.log("Profile.jsx token value---->", token);
@@ -77,17 +75,16 @@ function Profile() {
   //   },
   // });
 
-//   const {response} = useQuery({
-//     querykey: ["GET_PROFILE"],
-//     queryFn: async () => {
-//       const {data} = await instance.get(`/profile`,
-//       {headers: { Authorization: `Bearer ${token}` }
-//     });
-//       return data;
-//     },
-//   });
-//  console.log(response);
-
+  //   const {response} = useQuery({
+  //     querykey: ["GET_PROFILE"],
+  //     queryFn: async () => {
+  //       const {data} = await instance.get(`/profile`,
+  //       {headers: { Authorization: `Bearer ${token}` }
+  //     });
+  //       return data;
+  //     },
+  //   });
+  //  console.log(response);
 
   return (
     <StDiv>
@@ -100,24 +97,27 @@ function Profile() {
       <StContainer>
         <StSlideContainer>
           {/* <StSlide src='img/netflix-profile4.png' onClick={onClickDetail} /> */}
-        
-        <HiOutlinePlus onClick={onClickDetail}
-        style={{
-          width:'80px',
-          height:'80px'
-        }}/>
 
+          <HiOutlinePlus
+            onClick={onClickDetail}
+            style={{
+              width: "80px",
+              height: "80px",
+            }}
+          />
         </StSlideContainer>
-        <StSlide src='img/netflix-profile2.png' onClick={onClickBtn} 
-        style={{
-          width:'80px',
-          height:'80px'
-        }}/>
-
+        <StSlide
+          src="img/netflix-profile2.png"
+          onClick={onClickBtn}
+          style={{
+            width: "80px",
+            height: "80px",
+          }}
+        />
       </StContainer>
-      
-      <ModalContent backgroundColor='transparent'>
-      <ProfileDetail />
+
+      <ModalContent backgroundColor="transparent">
+        <ProfileDetail />
 
         {/* <ProfileDetail2 /> */}
         {/* 프로필 추가 모달창 부분 */}

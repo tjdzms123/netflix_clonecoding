@@ -33,15 +33,17 @@ const Background = styled.div`
   z-index: 4;
 `;
 
-export const ModalContent = ({ children, backgroundColor  }) => {
+export const ModalContent = ({ children, backgroundColor }) => {
   const modalState = useSelector((state) => state.modalSlice.modal);
-  return modalState && <Body backgroundColor={backgroundColor}>{children}</Body>;
+  return (
+    modalState && <Body backgroundColor={backgroundColor}>{children}</Body>
+  );
 };
 
 const Body = styled.div`
   width: 420px;
   position: absolute;
-  background-color: ${(props) => props.backgroundColor || 'rgb(0, 0, 0)'};
+  /* background-color: ${(props) => props.backgroundColor || "rgb(0, 0, 0)"}; */
   top: 3%;
   left: 50%;
   right: 50%;

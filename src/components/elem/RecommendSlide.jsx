@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Detail from "../../pages/Detail";
 import { modalOnOff } from "../../redux/modules/modalSlice";
-import { ModalBackground, ModalContent, ModalOpenTrigger } from "./Modal";
+// import { ModalBackground, ModalContent, ModalOpenTrigger } from "./Modal";
+import { ModalContent, ModalOpenTrigger } from "./Modal";
 
 const RecommendSlider = ({ movies }) => {
   const dispatch = useDispatch();
@@ -45,9 +46,7 @@ const RecommendSlider = ({ movies }) => {
             : null} */}
         </StIndicatorContainer>
       </StSliderHeader>
-      <ModalOpenTrigger>
-        <ModalBackground />
-      </ModalOpenTrigger>
+      <ModalOpenTrigger>{/* <ModalBackground /> */}</ModalOpenTrigger>
       <StContainer>
         <StArrow
           onClick={handlePrevClick}
@@ -73,10 +72,12 @@ const RecommendSlider = ({ movies }) => {
           &gt;
         </StArrow>
       </StContainer>
+      // *====================== 마담프루스트 ==================*
       <ModalContent>
         {/* {클릭한 썸네일id값을 useState에 넣은 후 그 id 값과 같은 놈만 deatail에 내려주면 될듯?} */}
         <Detail />
       </ModalContent>
+      // *====================== 마담프루스트 ==================*
     </>
   );
 };
